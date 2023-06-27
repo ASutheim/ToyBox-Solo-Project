@@ -23,13 +23,21 @@ const ToyForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Submitting a new toy:", newToy);
+
+    //Dispatches the info to the SAGA reducer
     dispatch({ type: "ADD_TOY", payload: newToy });
+
+    //Resets the locally stored value of newToy variable
     setNewToy({});
+
+    //Resets the input fields in the form
+    document.getElementById("input_form").reset();
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit} onChange={handleInput}>
+      <form id="input_form" onSubmit={handleSubmit} onChange={handleInput}>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required />
 
