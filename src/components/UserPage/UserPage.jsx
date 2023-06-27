@@ -2,6 +2,7 @@ import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import ToyForm from '../ToyForm/ToyForm.jsx'
+import ToyList from '../ToyList/ToyList.jsx'
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -12,6 +13,7 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
       <ToyForm/>
+      <ToyList/>
     </div>
   );
 }

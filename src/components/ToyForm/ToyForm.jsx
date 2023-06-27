@@ -7,6 +7,7 @@ const ToyForm = () => {
   // sets value of 'owner' equal to the id number corresponding to the username??
   // OR need to write GET request for this info??
   const owner = useSelector((store) => store.user.id);
+  console.log("The owner id for this page is:", owner)
 
   let [newToy, setNewToy] = useState({
     name: "",
@@ -26,7 +27,7 @@ const ToyForm = () => {
     console.log("Submitting a new toy:", newToy);
 
     //Dispatches the info to the SAGA reducer
-    dispatch({ type: "ADD_TOY", payload: newToy });
+    dispatch({ type: "POST_TOY", payload: newToy });
 
     //Resets the locally stored value of newToy variable
     setNewToy({});
