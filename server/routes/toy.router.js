@@ -7,7 +7,16 @@ router.get('/', (req, res) => {
     console.log("Inside router side of get request");
   
     if (req.isAuthenticated()) {
-    const queryText = `SELECT * FROM "toy_info"`;
+    const queryText = `SELECT toy_info.id, toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status,
+    STRING_AGG(DISTINCT category.category_name, ', ') AS toy_categories,
+    STRING_AGG(DISTINCT age.age_name, ', ') AS toy_ages
+    FROM toy_info
+  JOIN toy_category ON toy_info.id = toy_category.toy_id
+  JOIN category ON toy_category.category_id = category.id
+  JOIN toy_age ON toy_info.id = toy_age.toy_id
+  JOIN age ON toy_age.age_id = age.id
+  GROUP BY toy_info.id, toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status;`
+  ;
     pool
     .query(queryText)
     .then((result) => {
