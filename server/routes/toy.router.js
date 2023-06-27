@@ -8,8 +8,8 @@ router.get('/', (req, res) => {
   
     if (req.isAuthenticated()) {
     const queryText = `SELECT toy_info.id, toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status,
-    STRING_AGG(DISTINCT category.category_name, ', ') AS toy_categories,
-    STRING_AGG(DISTINCT age.age_name, ', ') AS toy_ages
+    ARRAY_AGG(DISTINCT category.category_name) AS toy_categories,
+    ARRAY_AGG(DISTINCT age.age_name) AS toy_ages
     FROM toy_info
   JOIN toy_category ON toy_info.id = toy_category.toy_id
   JOIN category ON toy_category.category_id = category.id
@@ -32,5 +32,24 @@ router.get('/', (req, res) => {
   }
   });
 
+
+  router.post('/', (req, res) => {
+
+    if (req.isAuthenticated()){ 
+
+        const queryText = `INSERT INTO "toy_info" (toy_info.id, toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url) VALUES ($1, $2, $3)`
+        console.log(req.body);
+        console.log(req.user);
+        pool.query(queryText, [req.body.image_url , req.body.description , req.user.id ])
+            .then(result => {
+                res.sendStatus(201)
+            }).catch(err => {
+                console.log('Error in POST /shelf.router' , err)
+                res.sendStatus(500)
+            })
+    } else {
+        res.sendStatus(403);
+    }
+});
 
   module.exports = router;

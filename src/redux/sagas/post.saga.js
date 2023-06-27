@@ -2,7 +2,7 @@ import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* postToy(action) {
-  console.log(action.payload);
+  console.log("Inside POST saga", action.payload);
   try {
     yield axios.post("/api/toys", action.payload);
     yield put({ type: "GET_USER_TOYS" });

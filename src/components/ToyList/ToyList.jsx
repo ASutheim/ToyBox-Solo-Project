@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
+import "./ToyList.css"
 
 
 function ToyList() {
     const dispatch = useDispatch();
-    const toysArray = useSelector((store) => store.toys);
+    const allToys = useSelector((store) => store.toys);
+    const user = useSelector((store) => store.user)
+    const usersToys = allToys.filter((toy) => toy.owner_id === user.id)
     const history = useHistory();
 
-    console.log("Array of toys:", toysArray)
 
     useEffect(() => {
         dispatch({ type: "GET_TOYS" });
@@ -20,7 +22,7 @@ function ToyList() {
  
       return (
         <div id="list-container">
-          {toysArray.map((toy) => (
+          {usersToys.map((toy) => (
             <div key={toy.id} onClick={handleClick}> 
               <div id="image">
                 <img src={toy.picture_url} alt={toy.name} />

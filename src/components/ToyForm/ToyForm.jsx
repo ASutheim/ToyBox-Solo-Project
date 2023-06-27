@@ -7,7 +7,7 @@ const ToyForm = () => {
   // sets value of 'owner' equal to the id number corresponding to the username??
   // OR need to write GET request for this info??
   const owner = useSelector((store) => store.user.id);
-  console.log("The owner id for this page is:", owner)
+  console.log("The owner id for this page is:", owner);
 
   let [newToy, setNewToy] = useState({
     name: "",
@@ -83,69 +83,69 @@ const ToyForm = () => {
 
         <fieldset id="categories">
           <legend>Category:</legend>
-          <label for="category1">
-            <input type="checkbox" id="category" name="category" value="1" />{" "}
-            Category 1
+          <label for="Outdoors">
+            <input type="checkbox" id="category" name="Outdoors" value="1" />
+            Outdoors
           </label>
-          <label for="category2">
-            <input type="checkbox" id="category" name="category" value="2" />{" "}
-            Category 2
+          <label for="Sports">
+            <input type="checkbox" id="category" name="Sports" value="2" />
+            Sports
           </label>
-          <label for="category3">
-            <input type="checkbox" id="category" name="category" value="3" />{" "}
-            Category 3
+          <label for="STEM">
+            <input type="checkbox" id="category" name="STEM" value="3" />{" "}
+            STEM
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="4" />{" "}
-            Category 4
+          <label for="Art and Music">
+            <input type="checkbox" id="category" name="Art and Music" value="4" />{" "}
+            Art and Music
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="5" />{" "}
-            Category 4
+          <label for="Language/Reading">
+            <input type="checkbox" id="category" name="Language/Reading" value="5" />{" "}
+            Language/Reading
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="6" />{" "}
-            Category 4
+          <label for="Play Pretend">
+            <input type="checkbox" id="category" name="Play Pretend" value="6" />{" "}
+            Play Pretend
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="7" />{" "}
-            Category 4
+          <label for="Dolls/Figurines">
+            <input type="checkbox" id="category" name="Dolls/Figurines" value="7" />{" "}
+            Dolls/Figurines
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="8" />{" "}
-            Category 4
+          <label for="Animals">
+            <input type="checkbox" id="category" name="Animals" value="8" />{" "}
+            Animals
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="9" />{" "}
-            Category 4
+          <label for="Vehicles">
+            <input type="checkbox" id="category" name="Vehicles" value="9" />{" "}
+            Vehicles
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="10" />{" "}
-            Category 4
+          <label for="Tools">
+            <input type="checkbox" id="category" name="Tools" value="10" />{" "}
+            Tools
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="11" />{" "}
-            Category 4
+          <label for="Puzzles">
+            <input type="checkbox" id="category" name="Puzzles" value="11" />{" "}
+            Puzzles
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="12" />{" "}
-            Category 4
+          <label for="Games">
+            <input type="checkbox" id="category" name="Games" value="12" />{" "}
+            Games
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="13" />{" "}
-            Category 4
+          <label for="Electronics">
+            <input type="checkbox" id="category" name="Electronics" value="13" />{" "}
+            Electronics
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="14" />{" "}
-            Category 4
+          <label for="Building">
+            <input type="checkbox" id="category" name="Building" value="14" />{" "}
+            Building
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="15" />{" "}
-            Category 4
+          <label for="Collectibles">
+            <input type="checkbox" id="category" name="Collectibles" value="15" />{" "}
+            Collectibles
           </label>
-          <label for="category4">
-            <input type="checkbox" id="category" name="category" value="16" />{" "}
-            Category 4
+          <label for="Sensory">
+            <input type="checkbox" id="category" name="Sensory" value="16" />{" "}
+            Sensory
           </label>
         </fieldset>
 
