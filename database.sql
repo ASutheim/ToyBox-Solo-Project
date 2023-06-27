@@ -1,5 +1,5 @@
 
-CREATE TABLE "user_info" (
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE "toy_info" (
     "id" SERIAL PRIMARY KEY,
     "owner_id" INTEGER NOT NULL,
     "name" VARCHAR (100) NOT NULL,
-    "cost" DECIMAL,
     "picture_url" VARCHAR (10000),
     "description" VARCHAR (10000),
-    "status" VARCHAR (30)
+    "status" VARCHAR (30),
+    "date_created" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "toy_category" (
@@ -67,20 +67,20 @@ VALUES (1, 'Outdoors'),
 
 --SAMPLE DATA FOR TESTING:
 
-INSERT INTO "user_info" ("id", "username", "password", "email", "rules_confirmed", "age_confirmed")
+INSERT INTO "user" ("id", "username", "password", "email", "rules_confirmed", "age_confirmed")
 VALUES (1, 'Anna', '123', 'email@place.com', TRUE, TRUE),
 (2, 'Mary', '123', 'mary@email.org', TRUE, TRUE),
 (3, 'Norsted-Winner', 'password', 'danityler@bates.com', TRUE, TRUE)
 
 
-INSERT INTO "toy_info" ("id", "owner_id", "name", "cost", "picture_url", "description", "status")
-VALUES (1, 1, 'Rainbow Slinky', 0.00, 'https://www.windycitynovelties.com/jumbo-rainbow-magic-spring.html?rmsrc=1&gclid=Cj0KCQjw7uSkBhDGARIsAMCZNJtWQTUAHtJvd7IsXseZAj8fI7iMpdQms1FcUN90LIT5Kog5r9AqdB8aAiT2EALw_wcB', 'So much fun on stairs!', 'available'), 
-(2, 1, 'Finger Puppets', 0.00, 'https://cdn.shoplightspeed.com/shops/605340/files/44641348/1652x1652x2/estella-animal-finger-puppets-crochet-safari.jpg', 'My mom made these, so cute', 'available'),
-(3, 1, 'Bubble wand', 0.00, 'https://s7.orientaltrading.com/is/image/OrientalTrading/PDP_VIEWER_IMAGE/small-bubble-wands-12-pc-~12_4927', 'We have a ton of these left over from a party, come get as many as you want!', 'available'),
-(4, 2, 'Train tracks', 40.00, 'https://assets.maisonette.com/spree/images/attachments/000/352/634/product_zoom/pbxukwyszsfmmfunoope.jpg?1622754911=&width=375&format=webp&crop=1%3A1', 'My kids have done a fair amount of scribble on the tracks but they are still fun to play with', 'available'),
-(5, 2, 'Watering can', 0.00, 'https://www.zoro.com/static/cms/product/full/Buy%20Supply%20Inc%20dba%20Linq%20USA%20Corp_bus141783trvxxfb6919.jpeg', 'You might not think your kids will enjoy this... trust me, they will', 'available'), 
-(6, 3, 'Play food', 20.00, 'https://www.melissaanddoug.com/cdn/shop/products/Cutting-Food-000487-1-Pieces-Out_d34886be-35c2-4db7-85b3-b03229d35284.jpg?v=1666634911&width=670', 'It''s got some toothmarks on it', 'available'), 
-(7, 3, 'Puzzle', 15.00, 'https://www.howwemontessori.com/.a/6a0147e1d4f40f970b0240a5106340200b-800wi', 'Missing one piece', 'available');
+INSERT INTO "toy_info" ("id", "owner_id", "name", "picture_url", "description", "status")
+VALUES (1, 1, 'Rainbow Slinky', 'https://www.windycitynovelties.com/jumbo-rainbow-magic-spring.html?rmsrc=1&gclid=Cj0KCQjw7uSkBhDGARIsAMCZNJtWQTUAHtJvd7IsXseZAj8fI7iMpdQms1FcUN90LIT5Kog5r9AqdB8aAiT2EALw_wcB', 'So much fun on stairs!', 'available'), 
+(2, 1, 'Finger Puppets', 'https://cdn.shoplightspeed.com/shops/605340/files/44641348/1652x1652x2/estella-animal-finger-puppets-crochet-safari.jpg', 'My mom made these, so cute', 'available'),
+(3, 1, 'Bubble wand', 'https://s7.orientaltrading.com/is/image/OrientalTrading/PDP_VIEWER_IMAGE/small-bubble-wands-12-pc-~12_4927', 'We have a ton of these left over from a party, come get as many as you want!', 'available'),
+(4, 2, 'Train tracks',  'https://assets.maisonette.com/spree/images/attachments/000/352/634/product_zoom/pbxukwyszsfmmfunoope.jpg?1622754911=&width=375&format=webp&crop=1%3A1', 'My kids have done a fair amount of scribble on the tracks but they are still fun to play with', 'available'),
+(5, 2, 'Watering can',  'https://www.zoro.com/static/cms/product/full/Buy%20Supply%20Inc%20dba%20Linq%20USA%20Corp_bus141783trvxxfb6919.jpeg', 'You might not think your kids will enjoy this... trust me, they will', 'available'), 
+(6, 3, 'Play food',  'https://www.melissaanddoug.com/cdn/shop/products/Cutting-Food-000487-1-Pieces-Out_d34886be-35c2-4db7-85b3-b03229d35284.jpg?v=1666634911&width=670', 'It''s got some toothmarks on it', 'available'), 
+(7, 3, 'Puzzle', 'https://www.howwemontessori.com/.a/6a0147e1d4f40f970b0240a5106340200b-800wi', 'Missing one piece', 'available');
 
 INSERT INTO "toy_age" ("toy_id", "age_id")
 VALUES (1, 7), (2, 7), (3, 2), (3, 3), (4, 2), (4, 3), 

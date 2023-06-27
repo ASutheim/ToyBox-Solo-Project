@@ -94,6 +94,9 @@ function App() {
               // Otherwise, show the registration page
               <RegisterPage />
             }
+            <ProtectedRoute>
+              {/* UserHome */}
+            </ProtectedRoute>
           </Route>
 
           <Route
