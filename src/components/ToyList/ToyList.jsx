@@ -8,6 +8,8 @@ function ToyList() {
     const toysArray = useSelector((store) => store.toys);
     const history = useHistory();
 
+    console.log("Array of toys:", toysArray)
+
     useEffect(() => {
         dispatch({ type: "GET_TOYS" });
       }, []);
