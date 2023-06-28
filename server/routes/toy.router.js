@@ -37,10 +37,12 @@ router.get('/', (req, res) => {
 
     if (req.isAuthenticated()){ 
 
-        const queryText = `INSERT INTO "toy_info" (toy_info.id, toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url) VALUES ($1, $2, $3)`
+        const queryText = `INSERT INTO "toy_info" (owner_id, name, description, picture_url) VALUES ($1, $2, $3, $4);
+        INSERT INTO "toy_category" (toy_id, category_id) // NEED TO UNNEST ARRAY;
+        INSERT INTO "toy_age" (toy_id, age_id) // NEED TO UNNEST ARRAY;`
         console.log(req.body);
         console.log(req.user);
-        pool.query(queryText, [req.body.image_url , req.body.description , req.user.id ])
+        pool.query(queryText, [])
             .then(result => {
                 res.sendStatus(201)
             }).catch(err => {
