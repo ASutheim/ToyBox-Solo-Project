@@ -12,28 +12,37 @@ const ToyForm = () => {
     description: "",
     picture_url: "",
     status: "available",
-    age: [],
+    // age: [],
     categories: [],
   });
 
+  const [age, setAge] = useState([]);
+
   function handleAgeOptions() {
     let options = document.getElementsByName("age");
-    let array = newToy.age;
+    console.log("options:", options);
+    // let ageArray = [...newToy.age]; // Create a new array using the spread operator
+    // console.log("array", ageArray);
     for (let option of options) {
       if (option.checked) {
-        array.push(option.value);
+        // ageArray.push(option.value);
+        setAge(...age, option.value);
       }
     }
+    console.log("ARRAY2:", age);
+    // setNewToy({ ...newToy, age: age }); // Update the state with the new array
+    // console.log("New toy after age array:", newToy);
   }
 
   function handleCategoriesOptions() {
     let options = document.getElementsByName("categories");
-    let array = newToy.categories;
+    let array = [...newToy.categories]; // Create a new array using the spread operator
     for (let option of options) {
       if (option.checked) {
         array.push(option.value);
       }
     }
+    setNewToy({ ...newToy, categories: array }); // Update the state with the new array
   }
 
   const handleSubmit = (event) => {
@@ -43,7 +52,7 @@ const ToyForm = () => {
     handleCategoriesOptions();
 
     console.log("Submitting a new toy:", newToy);
-
+    setNewToy({ ...newToy, age });
     //Dispatches the info to the SAGA reducer
     dispatch({ type: "POST_TOY", payload: newToy });
 
