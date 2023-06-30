@@ -6,7 +6,7 @@ const ToyForm = () => {
 
   const owner = useSelector((store) => store.user.id);
 
-  const [newToy, setNewToy] = useState({
+  const emptyToyFormState = {
     owner_id: owner,
     name: "",
     description: "",
@@ -14,7 +14,9 @@ const ToyForm = () => {
     status: "available",
     age: [],
     categories: [],
-  });
+  };
+
+  const [newToy, setNewToy] = useState(emptyToyFormState);
 
   function handleAgeOptions() {
     let options = document.getElementsByName("age");
@@ -48,7 +50,7 @@ const ToyForm = () => {
     dispatch({ type: "POST_TOY", payload: newToy });
 
     //Resets the locally stored value of newToy variable
-    setNewToy({});
+    setNewToy(emptyToyFormState);
 
     //Resets the input fields in the form
     document.getElementById("input_form").reset();
