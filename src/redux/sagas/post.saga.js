@@ -5,7 +5,7 @@ function* postToy(action) {
   console.log("Inside POST saga", action.payload);
   try {
     yield axios.post("/api/toys", action.payload);
-    yield put({ type: "GET_USER_TOYS" });
+    yield put({ type: "GET_TOYS" });
   } catch {
     console.log("error with post request in post saga");
   }
