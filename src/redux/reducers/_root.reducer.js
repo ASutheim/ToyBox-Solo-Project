@@ -1,7 +1,8 @@
-import { combineReducers } from 'redux';
-import errors from './errors.reducer';
-import user from './user.reducer';
-import toys from './toys.reducer'
+import { combineReducers } from "redux";
+import errors from "./errors.reducer";
+import user from "./user.reducer";
+import toys from "./toys.reducer";
+import toy from "./toy.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,7 +13,8 @@ import toys from './toys.reducer'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  toys, //contains store of toys returned from database
+  toys, //contains store of all toys returned from database
+  toy, //contains store of all details related to a specific toy
 });
 
 export default rootReducer;
