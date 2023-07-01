@@ -17,7 +17,7 @@ function* getToy(id) {
     const toy = yield axios.get(`/api/toys/${id.payload}`);
     console.log("Get toys saga returns toy data:", toy.data);
     yield put({ type: "SET_TOY", payload: toy.data });
-  } catch {
+  } catch (error) {
     console.log("Error in getToy saga", error);
   }
 }

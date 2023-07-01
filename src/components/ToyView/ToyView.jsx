@@ -5,15 +5,13 @@ import { useParams, useHistory } from "react-router-dom";
 function ToyView() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const allToys = useSelector((store) => store.toys);
-  const user = useSelector((store) => store.user);
-  const history = useHistory();
+  // const allToys = useSelector((store) => store.toys);
+  // const user = useSelector((store) => store.user);
+  // const history = useHistory();
 
   useEffect(() => {
-    dispatch({ type: "GET_TOY" });
+    dispatch({ type: "GET_TOY", payload: id });
   }, []);
-
-  console.log("Toy info:");
 
   return (
     <div>
