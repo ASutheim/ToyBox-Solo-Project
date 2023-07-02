@@ -41,7 +41,9 @@ router.get("/:id", (req, res) => {
   if (req.isAuthenticated()) {
     const queryText = `SELECT toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status,
     ARRAY_AGG(DISTINCT category.category_name) AS toy_categories,
-    ARRAY_AGG(DISTINCT age.age_name) AS toy_ages
+    ARRAY_AGG(DISTINCT category.id) AS category_ids,
+    ARRAY_AGG(DISTINCT age.age_name) AS toy_ages,
+    ARRAY_AGG(DISTINCT age.id) AS age_ids
     FROM toy_info
   JOIN toy_category ON toy_info.id = toy_category.toy_id
   JOIN category ON toy_category.category_id = category.id
