@@ -95,8 +95,14 @@ const ToyForm = () => {
         <fieldset id="age" value={newToy.age}>
           <legend>Age:</legend>
           <label for="age1">
-            <input type="checkbox" id="age" name="age" value="1" /> 0-2 year
-            olds
+            <input
+              type="checkbox"
+              id="age"
+              name="age"
+              value="1"
+              checked={true}
+            />
+            0-2 year olds
           </label>
           <label for="age2">
             <input type="checkbox" id="age" name="age" value="2" /> 2-4 year

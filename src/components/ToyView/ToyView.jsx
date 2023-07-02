@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import ToyEdit from "../ToyEdit/ToyEdit";
 
 function ToyView() {
   const dispatch = useDispatch();
@@ -23,9 +24,8 @@ function ToyView() {
 
   const [showEdit, setShowEdit] = useState(false);
 
-  const handleEdit = () => {
-    console.log("Submit edit button clicked!");
-  };
+
+
 
   return (
     <div>
@@ -37,7 +37,7 @@ function ToyView() {
 
       {showEdit ? (
         <div id="edit_view">
-          <p>Edit stuff!</p>
+          <ToyEdit/>
         </div>
       ) : (
         <div id="info_view">
