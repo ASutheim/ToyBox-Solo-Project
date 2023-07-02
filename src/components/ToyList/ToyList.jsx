@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./ToyList.css";
-import ToyView from "../ToyView/ToyView.jsx";
+// import ToyView from "../ToyView/ToyView.jsx";
 
 function ToyList() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function ToyList() {
   return (
     <div id="list-container">
       {usersToys.map((toy) => (
-        <div key={toy.id} onClick={handleClick(toy.id)}>
+        <div key={toy.id} onClick={()=>handleClick(toy.id)}>
           <div id="image">
             <img src={toy.picture_url} alt={toy.name} />
           </div>

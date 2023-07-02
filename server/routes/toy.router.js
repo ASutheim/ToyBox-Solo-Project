@@ -122,7 +122,7 @@ router.post("/", async (req, res) => {
       // Rollback the transaction if any error occurred
       await client.query(`ROLLBACK;`);
 
-      console.error("Error occurred:", error);
+      console.log("Error occurred:", error);
       res.sendStatus(500);
     } finally {
       console.log("made it here?");
@@ -131,6 +131,37 @@ router.post("/", async (req, res) => {
       console.log("released");
     }
   }
+});
+
+router.delete("/:id", async (req, res) => {
+  const toyId = req.params.id;
+  const client = await pool.connect();
+  console.log("Inside router side of DELETE request for toy of id:", toyId);
+  if (req.isAuthenticated())
+    try {
+      await client.query(`BEGIN;`);
+
+      const queryText1 = `DELETE FROM toy_info WHERE toy_info.id=$1`;
+      await client.query(queryText1, [toyId]);
+      await client.query(`COMMIT;`);
+
+      const queryText2 = `DELETE FROM toy_category WHERE toy_category.toy_id=$1`;
+      await client.query(queryText2, [toyId]);
+      await client.query(`COMMIT;`);
+
+      const queryText3 = `DELETE FROM toy_age WHERE toy_age.toy_id=$1`;
+      await client.query(queryText3, [toyId]);
+      await client.query(`COMMIT;`);
+    } catch (error) {
+      // Rollback the transaction if any error occurred
+      await client.query(`ROLLBACK;`);
+
+      console.log("Error occurred:", error);
+      res.sendStatus(500);
+    } finally {
+      client.release();
+      console.log("released");
+    }
 });
 
 module.exports = router;
