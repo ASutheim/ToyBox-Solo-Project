@@ -166,4 +166,59 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+router.put("/:id", async (req, res) => {
+  console.log("Inside router side of update request for this toy:", req.body);
+  const client = await pool.connect();
+  const toyId = req.params.id;
+
+  if (req.isAuthenticated()) {
+    try {
+      const queryText1 = `UPDATE toy_info
+        SET name = $1,
+            picture_url = $2,
+            description = $3,
+            status = $4
+        WHERE id = ${toyId}`;
+
+      const values1 = [
+        req.body.name,
+        req.body.picture_url,
+        req.body.description,
+        req.body.status,
+      ];
+
+      await client.query(queryText1, values1);
+
+      const queryText2 = `DELETE FROM toy_category WHERE toy_category.toy_id=$1`;
+      await client.query(queryText2, [toyId]);
+
+      const queryText3 = `INSERT INTO "toy_category" (toy_id, category_id) VALUES ($1, $2)`;
+      const categoriesArray = req.body.categories;
+      for (let i = 0; i < categoriesArray.length; i++) {
+        await client.query(queryText3, [toyId, categoriesArray[i]]);
+      }
+
+      const queryText4 = `DELETE FROM toy_age WHERE toy_age.toy_id=$1`;
+      await client.query(queryText4, [toyId]);
+
+      const queryText5 = `INSERT INTO "toy_age" (toy_id, age_id) VALUES ($1, $2)`;
+      const ageArray = req.body.age;
+      for (let i = 0; i < ageArray.length; i++) {
+        await client.query(queryText5, [toyId, ageArray[i]]);
+      }
+
+      res.sendStatus(200);
+    } catch (error) {
+      // Rollback the transaction if any error occurred
+      await client.query(`ROLLBACK;`);
+
+      console.log("Error occurred:", error);
+      res.sendStatus(500);
+    } finally {
+      client.release();
+      console.log("released");
+    }
+  }
+});
+
 module.exports = router;
