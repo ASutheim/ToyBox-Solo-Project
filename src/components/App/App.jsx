@@ -20,6 +20,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import ToyView from "../ToyView/ToyView";
+import CommunityToyList from "../CommunityToyList/CommunityToyList";
 
 import "./App.css";
 
@@ -107,6 +108,9 @@ function App() {
             <ToyView />
           </Route>
 
+          <Route>
+            <CommunityToyList exact path="/community_list" />
+          </Route>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
