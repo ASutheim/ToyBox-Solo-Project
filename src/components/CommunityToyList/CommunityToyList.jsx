@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./CommunityToyList.css";
 
-
 function CommunityToyList() {
   const dispatch = useDispatch();
   const allToys = useSelector((store) => store.toys);
@@ -19,15 +18,18 @@ function CommunityToyList() {
   };
 
   return (
-    <div id="list-container">
-      {usersToys.map((toy) => (
-        <div key={toy.id} onClick={()=>handleClick(toy.id)}>
-          <div id="image">
-            <img src={toy.picture_url} alt={toy.name} />
+    <div>
+      <h1>Community Toy List</h1>
+      <div id="list-container">
+        {allToys.map((toy) => (
+          <div key={toy.id} onClick={() => handleClick(toy.id)}>
+            <div id="image">
+              <img src={toy.picture_url} alt={toy.name} />
+            </div>
+            <p>{toy.name}</p>
           </div>
-          <p>{toy.name}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

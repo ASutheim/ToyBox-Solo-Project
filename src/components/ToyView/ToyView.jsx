@@ -10,6 +10,9 @@ function ToyView() {
   const toy = useSelector((store) => store.toy[0]);
   const user = useSelector((store) => store.user);
 
+  const [showEdit, setShowEdit] = useState(false);
+  const [ownerViewOnly, setOwnerViewOnly] = useState(toy.owner_id === user);
+
   useEffect(() => {
     dispatch({ type: "GET_TOY", payload: id });
   }, {});
@@ -50,15 +53,15 @@ function ToyView() {
     );
   };
 
-  const [showEdit, setShowEdit] = useState(false);
-
   return (
     <div>
       <p>Inside toy detail view!</p>
 
-      <button onClick={() => setShowEdit(!showEdit)}>
-        {showEdit ? "Cancel" : "Edit"}
-      </button>
+      {ownerViewOnly && (
+        <button onClick={() => setShowEdit(!showEdit)}>
+          {showEdit ? "Cancel" : "Edit"}
+        </button>
+      )}
 
       {showEdit ? (
         <div id="edit_view">
@@ -78,9 +81,11 @@ function ToyView() {
           <div id="image">
             <img src={toy?.picture_url} />
           </div>
-          <button id="delete" onClick={handleClickDelete}>
-            Delete this toy
-          </button>
+          {ownerViewOnly && (
+            <button id="delete" onClick={handleClickDelete}>
+              Delete this toy
+            </button>
+          )}
           {showModal && (
             <DeleteConfirmationModal
               onDelete={() => handleDelete(toy.id)}
