@@ -5,6 +5,7 @@ function ToyEdit() {
   const toy = useSelector((store) => store.toy[0]);
 
   const [toyInfo, setToyInfo] = useState({
+    id: toy.id,
     name: "",
     description: "",
     picture_url: "",
@@ -12,6 +13,12 @@ function ToyEdit() {
     age: [],
     categories: [],
   });
+
+  const handleStatus = (e) => {
+    if ((e.target.checked = true)) {
+      setToyInfo({ ...toyInfo, status: "On Loan" });
+    } else setToyInfo({ ...toyInfo, status: "Available" });
+  };
 
   const handleAgeOptions = () => {
     let options = document.getElementsByName("age");
@@ -32,8 +39,17 @@ function ToyEdit() {
       }
     }
   };
-  const handleEditSubmit = () => {
-    console.log("Submit edit button clicked!");
+
+  const handleEditSubmit = (event) => {
+    event.preventDefault();
+
+    handleAgeOptions();
+    handleCategoriesOptions();
+
+    console.log("Submitting updated toy:", toyInfo);
+
+    //Dispatches the info to the SAGA reducer
+    dispatch({ type: "UPDATE_TOY", payload: toyInfo });
   };
 
   return (
@@ -60,7 +76,7 @@ function ToyEdit() {
         }
       />
 
-      <label for="picture_url">URL:</label>
+      <label for="picture_url">Picture URL:</label>
       <input
         type="text"
         id="picture_url"
@@ -164,7 +180,15 @@ function ToyEdit() {
           Sensory
         </label>
       </fieldset>
-
+      <label>
+        <input
+          type="checkbox"
+          id="status"
+          value={toyInfo.status}
+          onChange={handleStatus}
+        />{" "}
+        Mark this toy as "on loan"
+      </label>
       <button type="submit">Submit</button>
     </form>
   );
