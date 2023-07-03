@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 
 function ToyEdit() {
+  const dispatch = useDispatch();
   const toy = useSelector((store) => store.toy[0]);
+  const { id } = useParams()
 
   const [toyInfo, setToyInfo] = useState({
-    id: toy.id,
+    id: id,
     name: "",
     description: "",
     picture_url: "",
