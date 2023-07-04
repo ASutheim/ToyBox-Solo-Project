@@ -23,12 +23,11 @@ function CommunityToyList() {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAge, setSelectedAge] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [showNoResults, setShowNoResults] = useState(false);
+  const [showSearchFields, setShowSearchFields] = useState(true);
 
   //triggered when the user submits a search query
   const handleSearch = () => {
-
     let filteredToys = [];
 
     //stores each toy that passes the filter function in the array of filtered toys
@@ -49,8 +48,13 @@ function CommunityToyList() {
     //if no toys match the search query, a modal will inform the user
     if (filteredToys.length === 0) {
       setShowNoResults(true);
+      setShowSearchFields(false);
     } else {
       setShowNoResults(false);
+      setShowSearchFields(true);
+      setSearchText("");
+      setSelectedCategory("");
+      setSelectedAge("");
     }
   };
 
@@ -61,9 +65,9 @@ function CommunityToyList() {
         <div className="modal-content">
           <h3>No Results Found</h3>
           <p>
-            Sorry, we don't have any toys that match your search! Try again with
-            a different search?
+            You searched for: {searchText} {selectedCategory} {selectedAge}
           </p>
+          <p>We don't have any toys that match your search! Try again?</p>
           <div className="modal-buttons">
             <button className="btn-cancel" onClick={handleClearSearch}>
               Reset Search
@@ -80,6 +84,7 @@ function CommunityToyList() {
     setSelectedCategory("");
     setSelectedAge("");
     setShowNoResults(false);
+    setShowSearchFields(true);
     setToysToDisplay(allToys);
   };
 
