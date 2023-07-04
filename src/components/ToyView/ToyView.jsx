@@ -7,17 +7,29 @@ function ToyView() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const history = useHistory();
+  //! Right here! Here, you set `toy` to the first thing in your array
+  //! When this page loads, toy.id will be the first toy in your community toy array (this may, or may not) be your user's id
+  //! Then you run your GET_Toy and this will update....but a little late for your button to show or not show.
   const toy = useSelector((store) => store.toy[0]);
   const user = useSelector((store) => store.user);
 
-  const [showEdit, setShowEdit] = useState(false);
-  const [ownerViewOnly, setOwnerViewOnly] = useState(toy.owner_id === user);
+  console.log("USER:", user.id);
+  console.log("TOY OWNER:", toy?.owner_id);
 
+  const [loading, setLoading] = useState(true);
+
+  //Checks the ids of owner and user, so that certain components render only if the toy is owned by the user
+  const [ownerViewOnly, setOwnerViewOnly] = useState(
+    toy?.owner_id === user?.id ?? false
+  );
+
+  //Get request for toy of the given ID
   useEffect(() => {
     dispatch({ type: "GET_TOY", payload: id });
   }, {});
 
   const [showModal, setShowModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const handleCancel = () => {
     setShowModal(false);
@@ -56,7 +68,6 @@ function ToyView() {
   return (
     <div>
       <p>Inside toy detail view!</p>
-
       {ownerViewOnly && (
         <button onClick={() => setShowEdit(!showEdit)}>
           {showEdit ? "Cancel" : "Edit"}
@@ -64,13 +75,14 @@ function ToyView() {
       )}
 
       {showEdit ? (
-        <div id="edit_view">
-          <ToyEdit />
-        </div>
+        ownerViewOnly && (
+          <div id="edit_view">
+            <ToyEdit />
+          </div>
+        )
       ) : (
         <div id="info_view">
           <p id="toy_name">Name: {toy?.name}</p>
-
           <p id="categories">
             Categories: {toy?.toy_categories.map((item) => item).join(", ")}{" "}
           </p>
@@ -86,7 +98,7 @@ function ToyView() {
               Delete this toy
             </button>
           )}
-          {showModal && (
+          {showModal && ownerViewOnly && (
             <DeleteConfirmationModal
               onDelete={() => handleDelete(toy.id)}
               onCancel={handleCancel}
