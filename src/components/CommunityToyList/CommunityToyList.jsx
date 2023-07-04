@@ -6,33 +6,47 @@ import "./CommunityToyList.css";
 function CommunityToyList() {
   const dispatch = useDispatch();
   const allToys = useSelector((store) => store.toys);
-  const user = useSelector((store) => store.user);
+  const [toysToDisplay, setToysToDisplay] = useState([]);
   const history = useHistory();
 
+  //dispatches a request on page load for all the information about all the toys
   useEffect(() => {
     dispatch({ type: "GET_TOYS" });
   }, []);
 
+  //sets the display hook to show all the toys on page load
+  useEffect(() => {
+    setToysToDisplay(allToys);
+  }, [allToys]);
+
+  //sets hooks for search parameters
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAge, setSelectedAge] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showNoResults, setShowNoResults] = useState(false);
-  const [toysToDisplay, setToysToDisplay] = useState(allToys)
 
+  //triggered when the user submits a search query
   const handleSearch = () => {
-    console.log("Inside handleSearch function");
-    const filteredToys = allToys.filter((toy) => {
-      const matchesSearchText = toy.name
-        .toLowerCase()
-        .includes(searchText.toLowerCase());
-      const matchesCategory =
-        selectedCategory === "" || toy.category === selectedCategory;
-      const matchesAge = selectedAge === "" || toy.age === selectedAge;
-      return matchesSearchText && matchesCategory && matchesAge;
+
+    let filteredToys = [];
+
+    //stores each toy that passes the filter function in the array of filtered toys
+    allToys.map((toy) => {
+      if (
+        toy.name.toLowerCase().includes(searchText.toLowerCase()) &&
+        toy.toy_categories.toString().includes(selectedCategory) &&
+        toy.toy_ages.toString().includes(selectedAge)
+      ) {
+        filteredToys.push(toy);
+      }
     });
-    setSearchResults(filteredToys);
+
+    //replaces 'allToys' in the display with 'filteredToys' which match the search query
+    setToysToDisplay(filteredToys);
     console.log("Search returned these toys:", filteredToys);
+
+    //if no toys match the search query, a modal will inform the user
     if (filteredToys.length === 0) {
       setShowNoResults(true);
     } else {
@@ -40,7 +54,8 @@ function CommunityToyList() {
     }
   };
 
-  const NoResultsModal = ({ onClose }) => {
+  //This modal function is triggered when a search yields no matching toys (empty array)
+  const NoResultsModal = () => {
     return (
       <div className="modal">
         <div className="modal-content">
@@ -59,14 +74,16 @@ function CommunityToyList() {
     );
   };
 
+  //This clears all the search parameters and resets the display to allToys
   const handleClearSearch = () => {
     setSearchText("");
     setSelectedCategory("");
     setSelectedAge("");
-    setSearchResults(allToys);
     setShowNoResults(false);
+    setToysToDisplay(allToys);
   };
 
+  //This routes the user to the detailed ToyView on click
   const handleClick = (id) => {
     history.push(`/details/${id}`);
   };
@@ -91,22 +108,22 @@ function CommunityToyList() {
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
               <option value="">Search by category</option>
-              <option value="1">Outdoors</option>
-              <option value="2">Sports</option>
-              <option value="3">STEM</option>
-              <option value="4">Art and Music</option>
-              <option value="5">Language/Reading</option>
-              <option value="6">Play Pretend</option>
-              <option value="7">Dolls/Figurines</option>
-              <option value="8">Animals</option>
-              <option value="9">Vehicles</option>
-              <option value="10">Tools</option>
-              <option value="11">Puzzles</option>
-              <option value="12">Games</option>
-              <option value="13">Electronics</option>
-              <option value="14">Building</option>
-              <option value="15">Collectibles</option>
-              <option value="16">Sensory</option>
+              <option value="Outdoors">Outdoors</option>
+              <option value="Sports">Sports</option>
+              <option value="STEM<">STEM</option>
+              <option value="Art and Music">Art and Music</option>
+              <option value="Language/Reading">Language/Reading</option>
+              <option value="Play Pretend">Play Pretend</option>
+              <option value="Dolls/Figurines">Dolls/Figurines</option>
+              <option value="Animals">Animals</option>
+              <option value="Vehicles">Vehicles</option>
+              <option value="Tools">Tools</option>
+              <option value="Puzzles">Puzzles</option>
+              <option value="Games">Games</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Building<">Building</option>
+              <option value="Collectibles">Collectibles</option>
+              <option value="Sensory">Sensory</option>
             </select>
           </div>
           <div id="search_by_age">
@@ -115,13 +132,13 @@ function CommunityToyList() {
               onChange={(e) => setSelectedAge(e.target.value)}
             >
               <option value="">Search by age group</option>
-              <option value="1">0-2 year olds</option>
-              <option value="2">2-4 year olds</option>
-              <option value="3">4-6 year olds</option>
-              <option value="4">7 and up</option>
-              <option value="5">10 and up</option>
-              <option value="6">12 and up</option>
-              <option value="7">Any age!</option>
+              <option value="0-2 year olds">0-2 year olds</option>
+              <option value="2-4 year olds">2-4 year olds</option>
+              <option value="4-6 year olds">4-6 year olds</option>
+              <option value="7 and up">7 and up</option>
+              <option value="10 and up">10 and up</option>
+              <option value="12 and up">12 and up</option>
+              <option value="Any age!">Any age!</option>
             </select>
           </div>
           <button id="search_button" onClick={handleSearch}>
@@ -133,8 +150,9 @@ function CommunityToyList() {
       <div id="no_results_div">
         {showNoResults && <NoResultsModal onClearSearch={handleClearSearch} />}
       </div>
+
       <div id="list-container">
-        {allToys.map((toy) => (
+        {toysToDisplay.map((toy) => (
           <div key={toy.id} onClick={() => handleClick(toy.id)}>
             <div id="image">
               <img src={toy.picture_url} alt={toy.name} />
