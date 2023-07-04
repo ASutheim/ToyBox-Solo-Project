@@ -17,6 +17,8 @@ function CommunityToyList() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAge, setSelectedAge] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [showNoResults, setShowNoResults] = useState(false);
+  const [toysToDisplay, setToysToDisplay] = useState(allToys)
 
   const handleSearch = () => {
     console.log("Inside handleSearch function");
@@ -31,6 +33,38 @@ function CommunityToyList() {
     });
     setSearchResults(filteredToys);
     console.log("Search returned these toys:", filteredToys);
+    if (filteredToys.length === 0) {
+      setShowNoResults(true);
+    } else {
+      setShowNoResults(false);
+    }
+  };
+
+  const NoResultsModal = ({ onClose }) => {
+    return (
+      <div className="modal">
+        <div className="modal-content">
+          <h3>No Results Found</h3>
+          <p>
+            Sorry, we don't have any toys that match your search! Try again with
+            a different search?
+          </p>
+          <div className="modal-buttons">
+            <button className="btn-cancel" onClick={handleClearSearch}>
+              Reset Search
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleClearSearch = () => {
+    setSearchText("");
+    setSelectedCategory("");
+    setSelectedAge("");
+    setSearchResults(allToys);
+    setShowNoResults(false);
   };
 
   const handleClick = (id) => {
@@ -94,6 +128,10 @@ function CommunityToyList() {
             Search
           </button>
         </form>
+      </div>
+
+      <div id="no_results_div">
+        {showNoResults && <NoResultsModal onClearSearch={handleClearSearch} />}
       </div>
       <div id="list-container">
         {allToys.map((toy) => (
