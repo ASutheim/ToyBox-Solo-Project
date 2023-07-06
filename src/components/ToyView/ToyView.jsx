@@ -10,7 +10,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 function ToyView() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { id } = useParams();
   const history = useHistory();
   const toy = useSelector((store) => store.toy[0]);
@@ -107,7 +107,7 @@ function ToyView() {
           <div id="image">
             <img src={toy?.picture_url} />
           </div>
-          
+
           {borrowerViewOnly &&
           <button
             id="borrow_button"

@@ -6,6 +6,7 @@
   align-items: center;
 }
 
+
 .toy_thumbnail {
   border: solid 1px;
   height: 180px;
@@ -25,4 +26,4 @@
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-}
+} 
