@@ -6,6 +6,7 @@ function* getToys() {
   try {
     const toys = yield axios.get("/api/toys");
     console.log("Get toys saga returns toy data:", toys.data);
+    yield put({ type: "RESET_TOY" });
     yield put({ type: "SET_TOYS", payload: toys.data });
   } catch {
     console.log("Error in getToys saga", error);

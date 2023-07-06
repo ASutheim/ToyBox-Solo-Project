@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./ToyList.css";
+
 // import ToyView from "../ToyView/ToyView.jsx";
 
 function ToyList() {
@@ -19,15 +20,27 @@ function ToyList() {
     history.push(`/details/${id}`, { toyOwnerId, userId });
   };
   return (
-    <div id="list-container">
-      {usersToys.map((toy) => (
-        <div key={toy.id} onClick={()=>handleClick(toy.id, toy.owner)}>
-          <div id="image">
-            <img src={toy.picture_url} alt={toy.name} />
+    <div className="list_container">
+      <div className="list-header">
+        <h2>Your Toys:</h2>
+      </div>
+      <div className="list">
+        {usersToys.map((toy) => (
+          <div
+            className="toy_thumbnail"
+            key={toy.id}
+            onClick={() => handleClick(toy.id, toy.owner)}
+          >
+            <div className="edit">
+              <img src="main/documentation/images/edit_icon.png" />
+            </div>
+            <div className="image">
+              <img src={toy.picture_url} alt={toy.name} />
+            </div>
+            <p className="toy_name">{toy.name}</p>
           </div>
-          <p>{toy.name}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import ToyEdit from "../ToyEdit/ToyEdit";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function ToyView() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const history = useHistory();
-  //! Right here! Here, you set `toy` to the first thing in your array
-  //! When this page loads, toy.id will be the first toy in your community toy array (this may, or may not) be your user's id
-  //! Then you run your GET_Toy and this will update....but a little late for your button to show or not show.
   const toy = useSelector((store) => store.toy[0]);
   const user = useSelector((store) => store.user);
 
@@ -22,25 +25,28 @@ function ToyView() {
   const [ownerViewOnly, setOwnerViewOnly] = useState(
     toy?.owner_id === user?.id ?? false
   );
+  const [borrowerViewOnly, setBorrowerViewOnly] = useState(
+    toy?.owner_id != user?.id ?? false
+  );
 
   //Get request for toy of the given ID
   useEffect(() => {
     dispatch({ type: "GET_TOY", payload: id });
   }, {});
 
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
   const handleCancel = () => {
-    setShowModal(false);
+    setShowDeleteModal(false);
   };
 
   const handleClickDelete = () => {
-    setShowModal(true);
+    setShowDeleteModal(true);
   };
 
   const handleDelete = () => {
-    setShowModal(false);
+    setShowDeleteModal(false);
     console.log("Delete button pushed! ID to delete:", id);
     dispatch({ type: "DELETE_TOY", payload: id });
     history.push("/user");
@@ -65,9 +71,16 @@ function ToyView() {
     );
   };
 
+  const [showBorrowModal, setShowBorrowModal] = useState(false);
+
+  const borrowModal = () => {
+    if (toy?.owner_id != user.id) {
+      return <div>Borrow Modal</div>;
+    }
+  };
+
   return (
     <div>
-      <p>Inside toy detail view!</p>
       {ownerViewOnly && (
         <button onClick={() => setShowEdit(!showEdit)}>
           {showEdit ? "Cancel" : "Edit"}
@@ -83,6 +96,7 @@ function ToyView() {
       ) : (
         <div id="info_view">
           <p id="toy_name">Name: {toy?.name}</p>
+          <p id="status"> Status: {toy?.status}</p>
           <p id="categories">
             Categories: {toy?.toy_categories.map((item) => item).join(", ")}{" "}
           </p>
@@ -93,12 +107,21 @@ function ToyView() {
           <div id="image">
             <img src={toy?.picture_url} />
           </div>
+          
+          {borrowerViewOnly &&
+          <button
+            id="borrow_button"
+            onClick={() => setShowBorrowModal(!showBorrowModal)}
+          >
+            Ask to borrow?
+          </button>}
+          
           {ownerViewOnly && (
             <button id="delete" onClick={handleClickDelete}>
               Delete this toy
             </button>
           )}
-          {showModal && ownerViewOnly && (
+          {showDeleteModal && ownerViewOnly && (
             <DeleteConfirmationModal
               onDelete={() => handleDelete(toy.id)}
               onCancel={handleCancel}

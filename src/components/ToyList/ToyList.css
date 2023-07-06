@@ -1,4 +1,28 @@
-#image {
-  height: 100px;
-  width: 100px;
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.toy_thumbnail {
+  border: solid 1px;
+  height: 180px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.toy_name{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
 }

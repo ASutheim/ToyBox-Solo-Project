@@ -1,0 +1,12 @@
+.flex-container {
+  display: flex;
+  height: 80%;
+  flex-direction: row;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+  }

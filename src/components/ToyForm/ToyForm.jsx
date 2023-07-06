@@ -57,7 +57,7 @@ const ToyForm = () => {
   };
 
   return (
-    <div>
+    <div className="form">
       <form id="input_form" onSubmit={handleSubmit}>
         <label for="name">Name:</label>
         <input
@@ -95,13 +95,7 @@ const ToyForm = () => {
         <fieldset id="age" value={newToy.age}>
           <legend>Age:</legend>
           <label for="age1">
-            <input
-              type="checkbox"
-              id="age"
-              name="age"
-              value="1"
-              checked={true}
-            />
+            <input type="checkbox" id="age" name="age" value="1" />
             0-2 year olds
           </label>
           <label for="age2">
