@@ -1,0 +1,18 @@
+.info-view {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
+}
+
+.image-control-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.toy-image {
+  height: 200px;
+  width: auto;
+}

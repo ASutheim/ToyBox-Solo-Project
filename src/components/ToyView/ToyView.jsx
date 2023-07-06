@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import ToyEdit from "../ToyEdit/ToyEdit";
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
+import "./ToyView.css";
 
 function ToyView() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { id } = useParams();
   const history = useHistory();
   const toy = useSelector((store) => store.toy[0]);
@@ -79,55 +75,55 @@ function ToyView() {
     }
   };
 
+  if (showEdit) {
+    return <ToyEdit />;
+  }
   return (
-    <div>
-      {ownerViewOnly && (
-        <button onClick={() => setShowEdit(!showEdit)}>
-          {showEdit ? "Cancel" : "Edit"}
-        </button>
-      )}
+    <div className="info-view">
+      <div className="toy-details">
+        <p id="toy_name">Name: {toy?.name}</p>
+        <p id="status"> Status: {toy?.status}</p>
+        <p id="categories">
+          Categories: {toy?.toy_categories.map((item) => item).join(", ")}{" "}
+        </p>
+        <p id="ages">
+          Age Group/s: {toy?.toy_ages.map((item) => item).join(", ")}{" "}
+        </p>
+        <p id="description"> Description: {toy?.description}</p>
+      </div>
 
-      {showEdit ? (
-        ownerViewOnly && (
-          <div id="edit_view">
-            <ToyEdit />
-          </div>
-        )
-      ) : (
-        <div id="info_view">
-          <p id="toy_name">Name: {toy?.name}</p>
-          <p id="status"> Status: {toy?.status}</p>
-          <p id="categories">
-            Categories: {toy?.toy_categories.map((item) => item).join(", ")}{" "}
-          </p>
-          <p id="ages">
-            Age Group/s: {toy?.toy_ages.map((item) => item).join(", ")}{" "}
-          </p>
-          <p id="description"> Description: {toy?.description}</p>
-          <div id="image">
-            <img src={toy?.picture_url} />
-          </div>
+      <div className="image-control-container">
+        <div id="image">
+          <img src={toy?.picture_url} className="toy-image" />
+        </div>
 
-          {borrowerViewOnly &&
-          <button
-            id="borrow_button"
-            onClick={() => setShowBorrowModal(!showBorrowModal)}
-          >
-            Ask to borrow?
-          </button>}
-          
+        <div className="detail-controls">
           {ownerViewOnly && (
-            <button id="delete" onClick={handleClickDelete}>
-              Delete this toy
+            <>
+              <button id="delete" onClick={handleClickDelete}>
+                Delete this toy
+              </button>
+              <button onClick={() => setShowEdit(!showEdit)}>
+                {showEdit ? "Cancel" : "Edit"}
+              </button>
+            </>
+          )}
+          {borrowerViewOnly && (
+            <button
+              id="borrow_button"
+              onClick={() => setShowBorrowModal(!showBorrowModal)}
+            >
+              Ask to borrow?
             </button>
           )}
-          {showDeleteModal && ownerViewOnly && (
-            <DeleteConfirmationModal
-              onDelete={() => handleDelete(toy.id)}
-              onCancel={handleCancel}
-            />
-          )}
         </div>
+      </div>
+
+      {showDeleteModal && ownerViewOnly && (
+        <DeleteConfirmationModal
+          onDelete={() => handleDelete(toy.id)}
+          onCancel={handleCancel}
+        />
       )}
     </div>
   );
