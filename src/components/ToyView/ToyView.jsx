@@ -13,9 +13,9 @@ import "./ToyView.css";
 
 function ToyView() {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const id = useParams();
   const history = useHistory();
-  const toy = useSelector((store) => store.toy[0]);
+  const toy = useSelector((store) => store.toy);
   const user = useSelector((store) => store.user);
 
   console.log("USER:", user.id);
@@ -23,18 +23,10 @@ function ToyView() {
 
   const [loading, setLoading] = useState(true);
 
-  //Checks the ids of owner and user, so that certain components render only if the toy is owned by the user
-  const [ownerViewOnly, setOwnerViewOnly] = useState(
-    toy?.owner_id === user?.id ?? false
-  );
-  const [borrowerViewOnly, setBorrowerViewOnly] = useState(
-    toy?.owner_id != user?.id ?? false
-  );
-
   //Get request for toy of the given ID
   useEffect(() => {
-    dispatch({ type: "GET_TOY", payload: id });
-  }, {});
+    dispatch({ type: "GET_TOYS", payload: id });
+  }, []);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -90,10 +82,13 @@ function ToyView() {
         <p id="toy_name">Name: {toy?.name}</p>
         <p id="status"> Status: {toy?.status}</p>
         <p id="categories">
-          Categories: {toy?.toy_categories.map((item) => item).join(", ")}{" "}
+          Categories:{" "}
+          {toy?.toy_categories &&
+            toy?.toy_categories.map((item) => item).join(", ")}{" "}
         </p>
         <p id="ages">
-          Age Group/s: {toy?.toy_ages.map((item) => item).join(", ")}{" "}
+          Age Group/s:{" "}
+          {toy?.toy_ages && toy?.toy_ages.map((item) => item).join(", ")}{" "}
         </p>
         <p id="description"> Description: {toy?.description}</p>
       </div>
@@ -104,7 +99,7 @@ function ToyView() {
         </div>
 
         <div className="detail-controls">
-          {ownerViewOnly && (
+          {toy?.owner_id === user?.id && (
             <>
               <button id="delete" onClick={handleClickDelete}>
                 Delete this toy
@@ -114,7 +109,7 @@ function ToyView() {
               </button>
             </>
           )}
-          {borrowerViewOnly && (
+          {toy?.owner_id !== user?.id && (
             <button
               id="borrow_button"
               onClick={() => setShowBorrowModal(!showBorrowModal)}

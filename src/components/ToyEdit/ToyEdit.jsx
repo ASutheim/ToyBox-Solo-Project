@@ -6,7 +6,7 @@ import "./ToyEdit.css";
 function ToyEdit() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const toy = useSelector((store) => store.toy[0]);
+  const toy = useSelector((store) => store.toy);
   const { id } = useParams();
   console.log("TOYINFOOOOOOOOO:", toy);
 
@@ -78,7 +78,7 @@ function ToyEdit() {
   ];
   const handleAgeDefaults = () => {
     return ageOptions.map((age) => {
-      if (toy.toy_ages.includes(age.name)) {
+      if (toyInfo.toy_ages.includes(age.name)) {
         return (
           <label htmlFor={age.name} key={age.value}>
             <input

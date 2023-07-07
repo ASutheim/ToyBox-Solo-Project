@@ -12,10 +12,10 @@ router.get("/", (req, res) => {
     ARRAY_AGG(DISTINCT category.category_name) AS toy_categories,
     ARRAY_AGG(DISTINCT age.age_name) AS toy_ages
     FROM toy_info
-  JOIN toy_category ON toy_info.id = toy_category.toy_id
-  JOIN category ON toy_category.category_id = category.id
-  JOIN toy_age ON toy_info.id = toy_age.toy_id
-  JOIN age ON toy_age.age_id = age.id
+  FULL JOIN toy_category ON toy_info.id = toy_category.toy_id
+  FULL JOIN category ON toy_category.category_id = category.id
+  FULL JOIN toy_age ON toy_info.id = toy_age.toy_id
+  FULL JOIN age ON toy_age.age_id = age.id
   GROUP BY toy_info.id, toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status;`;
     pool
       .query(queryText)
@@ -45,10 +45,10 @@ router.get("/:id", (req, res) => {
     ARRAY_AGG(DISTINCT age.age_name) AS toy_ages,
     ARRAY_AGG(DISTINCT age.id) AS age_ids
     FROM toy_info
-  JOIN toy_category ON toy_info.id = toy_category.toy_id
-  JOIN category ON toy_category.category_id = category.id
-  JOIN toy_age ON toy_info.id = toy_age.toy_id
-  JOIN age ON toy_age.age_id = age.id
+  FULL JOIN toy_category ON toy_info.id = toy_category.toy_id
+  FULL JOIN category ON toy_category.category_id = category.id
+  FULL JOIN toy_age ON toy_info.id = toy_age.toy_id
+  FULL JOIN age ON toy_age.age_id = age.id
   WHERE (toy_info.id = ${toyId})
   GROUP BY toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status;`;
     pool
@@ -213,9 +213,9 @@ router.put("/:id", async (req, res) => {
       await client.query(`ROLLBACK;`);
 
       console.log("Error occurred:", error);
-      res.sendStatus(500);
     } finally {
       client.release();
+
       console.log("released");
     }
   }
