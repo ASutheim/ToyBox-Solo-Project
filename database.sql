@@ -3,10 +3,13 @@ CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
-    "email" VARCHAR (80) NOT NULL,
-    "rules_confirmed" BOOLEAN,
-    "age_confirmed" BOOLEAN
 );
+
+CREATE TABLE "user_email" (
+    "id" SERIAL PRIMARY KEY,
+    "email" VARCHAR (100) UNIQUE NOT NULL
+)
+
 
 CREATE TABLE "toy_info" (
     "id" SERIAL PRIMARY KEY,
@@ -67,10 +70,15 @@ VALUES (1, 'Outdoors'),
 
 --SAMPLE DATA FOR TESTING:
 
-INSERT INTO "user" ("id", "username", "password", "email", "rules_confirmed", "age_confirmed")
-VALUES (1, 'Anna', '123', 'email@place.com', TRUE, TRUE),
-(2, 'Mary', '123', 'mary@email.org', TRUE, TRUE),
-(3, 'Norsted-Winner', 'password', 'danityler@bates.com', TRUE, TRUE)
+INSERT INTO "user" ("id", "username", "password")
+VALUES (1, 'Anna', '123'),
+(2, 'Mary', '123'),
+(3, 'Norsted-Winner', 'password')
+
+INSERT INTO "user_email" ("id", "email")
+VALUES (1, 'anna@my_email.com'),
+(2, 'mary@mary_email.com'),
+(3, 'solveig@email.com')
 
 
 INSERT INTO "toy_info" ("id", "owner_id", "name", "picture_url", "description", "status")

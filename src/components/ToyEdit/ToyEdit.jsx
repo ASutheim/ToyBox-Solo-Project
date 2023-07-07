@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import "./ToyEdit.css";
 
 function ToyEdit() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const toy = useSelector((store) => store.toy[0]);
   const { id } = useParams();
@@ -11,60 +12,59 @@ function ToyEdit() {
 
   const [toyInfo, setToyInfo] = useState({
     id: id,
-    name: "",
-    description: "",
-    picture_url: "",
-    status: "",
-    age: [],
-    categories: [],
+    name: toy.name,
+    description: toy.description,
+    picture_url: toy.picture_url,
+    status: toy.status,
+    toy_ages: toy.toy_ages,
+    toy_categories: toy.toy_categories,
   });
 
   const categoryOptions = [
-    { name: "Outdoors", value: 1 },
-    { name: "Sports", value: 2 },
-    { name: "STEM", value: 3 },
-    { name: "Art and Music", value: 4 },
-    { name: "Language/Reading", value: 5 },
-    { name: "Play Pretend", value: 6 },
-    { name: "Dolls/Figurines", value: 7 },
-    { name: "Animals", value: 8 },
-    { name: "Vehicles", value: 9 },
-    { name: "Tools", value: 10 },
-    { name: "Puzzles", value: 11 },
-    { name: "Games", value: 12 },
-    { name: "Electronics", value: 13 },
-    { name: "Building", value: 14 },
-    { name: "Collectibles", value: 15 },
-    { name: "Sensory", value: 16 },
+    { name: "Outdoors", value: 1, checked: "" },
+    { name: "Sports", value: 2, checked: "" },
+    { name: "STEM", value: 3, checked: "" },
+    { name: "Art and Music", value: 4, checked: "" },
+    { name: "Language/Reading", value: 5, checked: "" },
+    { name: "Play Pretend", value: 6, checked: "" },
+    { name: "Dolls/Figurines", value: 7, checked: "" },
+    { name: "Animals", value: 8, checked: "" },
+    { name: "Vehicles", value: 9, checked: "" },
+    { name: "Tools", value: 10, checked: "" },
+    { name: "Puzzles", value: 11, checked: "" },
+    { name: "Games", value: 12, checked: "" },
+    { name: "Electronics", value: 13, checked: "" },
+    { name: "Building", value: 14, checked: "" },
+    { name: "Collectibles", value: 15, checked: "" },
+    { name: "Sensory", value: 16, checked: "" },
   ];
 
   const handleCategoryDefaults = () => {
     return categoryOptions.map((category) => {
       if (toy.toy_categories.includes(category.name)) {
-        return (
-          <label htmlFor={category.name} key={category.value}>
-            <input
-              type="checkbox"
-              className="category"
-              value={category.value}
-              checked
-            />
-            {category.name}
-          </label>
-        );
+        category.checked = true; // Update the checked value for matching categories
       } else {
-        return (
-          <label htmlFor={category.name} key={category.value}>
-            <input
-              type="checkbox"
-              className="category"
-              value={category.value}
-            />
-            {category.name}
-          </label>
-        );
+        category.checked = false;
       }
+      return (
+        <label htmlFor={category.name} key={category.value}>
+          <input
+            type="checkbox"
+            className="category"
+            value={category.value}
+            checked={category.checked}
+            onChange={handleCategoryChange(category)}
+          />
+          {category.name}
+        </label>
+      );
     });
+  };
+  const handleCategoryChange = (category) => {
+    return (event) => {
+      const isChecked = event.target.checked;
+      category.checked = isChecked;
+    };
   };
 
   const ageOptions = [
@@ -109,27 +109,28 @@ function ToyEdit() {
 
   const handleAgeOptions = () => {
     let options = document.getElementsByName("age");
-    let array = toyInfo.age;
+    let array = toyInfo.toy_ages;
     for (let option of options) {
       if (option.checked) {
         array.push(option.value);
       }
     }
+    setToyInfo({ ...toyInfo, toy_ages: array });
   };
 
   const handleCategoriesOptions = () => {
     let options = document.getElementsByName("categories");
-    let array = toyInfo.categories;
+    let array = toyInfo.toy_categories;
     for (let option of options) {
       if (option.checked) {
         array.push(option.value);
       }
     }
+    setToyInfo({ ...toyInfo, toy_categories: array });
   };
 
   const handleEditSubmit = (event) => {
     event.preventDefault();
-
     handleAgeOptions();
     handleCategoriesOptions();
 
@@ -137,6 +138,22 @@ function ToyEdit() {
 
     //Dispatches the info to the SAGA reducer
     dispatch({ type: "UPDATE_TOY", payload: toyInfo });
+    showConfirmation();
+  };
+
+  const showConfirmation = () => {
+    return (
+      <div className="popup" id="confirmationPopup">
+        <p>
+          You've updated <b>{toyInfo.name}</b>
+        </p>
+        <button onClick={closePopup()}>Close</button>
+      </div>
+    );
+  };
+
+  const closePopup = () => {
+    history.push("/user");
   };
 
   return (
@@ -146,7 +163,7 @@ function ToyEdit() {
         type="text"
         id="name"
         name="name"
-        defaultValue={toy.name}
+        defaultValue={toyInfo.name}
         required
         onChange={(e) => setToyInfo({ ...toyInfo, name: e.target.value })}
       />
@@ -157,7 +174,7 @@ function ToyEdit() {
         id="description"
         name="description"
         rows="4"
-        defaultValue={toy.description}
+        defaultValue={toyInfo.description}
         onChange={(e) =>
           setToyInfo({ ...toyInfo, description: e.target.value })
         }
@@ -168,17 +185,17 @@ function ToyEdit() {
         type="text"
         id="picture_url"
         name="picture_url"
-        defaultValue={toy.picture_url}
+        defaultValue={toyInfo.picture_url}
         onChange={(e) =>
           setToyInfo({ ...toyInfo, picture_url: e.target.value })
         }
       />
 
-      <fieldset id="age" value={toy.age}>
+      <fieldset id="age" value={toyInfo.toy_ages}>
         {handleAgeDefaults()}
       </fieldset>
 
-      <fieldset id="categories" value={toy.categories}>
+      <fieldset id="categories" value={toyInfo.toy_categories}>
         <legend>Categories:</legend>
         {handleCategoryDefaults()}
       </fieldset>

@@ -95,8 +95,6 @@ function CommunityToyList() {
 
   return (
     <div>
-      <h1>Community Toy List</h1>
-
       <div id="search_fields">
         <form id="search_list_form">
           <div id="search_by_name">
@@ -156,10 +154,10 @@ function CommunityToyList() {
         {showNoResults && <NoResultsModal onClearSearch={handleClearSearch} />}
       </div>
 
-      <div id="list-container">
+      <div className="community-toy-list-container">
         {toysToDisplay.map((toy) => (
           <div key={toy.id} onClick={() => handleClick(toy.id)}>
-            <div id="image">
+            <div className="toy-image-list-view ">
               <img src={toy.picture_url} alt={toy.name} />
             </div>
             <p>{toy.name}</p>

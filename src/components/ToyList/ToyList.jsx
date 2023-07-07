@@ -24,7 +24,7 @@ function ToyList() {
       <div className="list-header">
         <h2>Your Toys:</h2>
       </div>
-      <div className="list">
+      <div className="toy-list">
         {usersToys.map((toy) => (
           <div
             className="toy_thumbnail"
@@ -35,7 +35,11 @@ function ToyList() {
               <img src="main/documentation/images/edit_icon.png" />
             </div>
             <div className="image">
-              <img src={toy.picture_url} alt={toy.name} />
+              <img
+                src={toy.picture_url}
+                alt={toy.name}
+                className="toy-image-list-view"
+              />
             </div>
             <p className="toy_name">{toy.name}</p>
           </div>

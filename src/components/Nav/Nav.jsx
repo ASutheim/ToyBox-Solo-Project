@@ -9,10 +9,14 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">ToyBox</h2>
-      </Link>
-      <div>
+      <div className="toybox">
+        <img src={require("./photoOne.jpeg")} height="100" />
+        <Link to="/home">
+          <h2 className="nav-title">ToyBox</h2>
+        </Link>
+      </div>
+      <br></br>
+      <div className="links_bar">
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links

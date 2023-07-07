@@ -1,11 +1,9 @@
-
-.list {
+.toy-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
 }
-
 
 .toy_thumbnail {
   border: solid 1px;
@@ -17,13 +15,13 @@
   align-items: center;
 }
 
-.image {
-  max-height: 100px;
-  max-width: 100px;
-}
-
-.toy_name{
+.toy_name {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-} 
+}
+
+.toy-image-list-view {
+  max-height: 100px;
+  max-width: 100px;
+}
