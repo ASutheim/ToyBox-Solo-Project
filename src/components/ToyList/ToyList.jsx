@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./ToyList.css";
+import ToyEdit from "../ToyEdit/ToyEdit";
 
 import ToyItem from "./ToyItem";
 
@@ -16,9 +17,8 @@ function ToyList() {
     history.push(`/details/${id}`, { toyOwnerId, userId });
   };
 
-  //TODO -> Write a handleEdit function for what you want to happen when you click the edit button.
   const handleEdit = () => {
-    //Stuff here, please!
+    return <ToyEdit/>
   };
 
   useEffect(() => {

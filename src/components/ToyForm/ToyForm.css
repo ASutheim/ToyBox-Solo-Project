@@ -39,7 +39,7 @@ label{
 
 .button{
 margin-top: 15px;
-border-radius: 20px;
+border-radius: 10px;
 border-color: #f4b640;
 padding-top: 5px;
 padding-bottom: 5px;
@@ -54,6 +54,9 @@ align-self: end;
 
 .button:hover {
   cursor: pointer;
+  background-color: #f4b640;
+  color:  #00807B;
+  font-style: bold;
 }
 
 .button:active {

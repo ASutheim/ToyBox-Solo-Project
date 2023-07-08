@@ -66,24 +66,26 @@ function ToyView() {
   }
   return (
     <div className="info-view">
-      <div className="toy-details">
-        <p id="toy_name">Name: {toy?.name}</p>
-        <p id="status"> Status: {toy?.status}</p>
-        <p id="categories">
-          Categories:{" "}
-          {toy?.toy_categories &&
-            toy?.toy_categories.map((item) => item).join(", ")}{" "}
-        </p>
-        <p id="ages">
-          Age Group/s:{" "}
-          {toy?.toy_ages && toy?.toy_ages.map((item) => item).join(", ")}{" "}
-        </p>
-        <p id="description"> Description: {toy?.description}</p>
-      </div>
-
       <div className="image-control-container">
         <div id="image">
           <img src={toy?.picture_url} className="toy-image" />
+        </div>
+      </div>
+
+      <div id="right-side-wrapper">
+        <div className="toy-details">
+          <p id="toy_name">Name: {toy?.name}</p>
+          <p id="status"> Status: {toy?.status}</p>
+          <p id="categories">
+            Categories:{" "}
+            {toy?.toy_categories &&
+              toy?.toy_categories.map((item) => item).join(", ")}{" "}
+          </p>
+          <p id="ages">
+            Age Group/s:{" "}
+            {toy?.toy_ages && toy?.toy_ages.map((item) => item).join(", ")}{" "}
+          </p>
+          <p id="description"> Description: {toy?.description}</p>
         </div>
 
         <div className="detail-controls">
@@ -93,7 +95,8 @@ function ToyView() {
                 Delete this toy
               </button>
               <button onClick={() => setShowEdit(!showEdit)}>
-                {showEdit ? "Cancel" : "Edit"}
+                <img src={require("./edit-white.jpg")} height="15" />
+                "Edit"
               </button>
             </>
           )}
@@ -130,7 +133,6 @@ function ToyView() {
           )}
         </div>
       </div>
-
       {showDeleteModal && (
         <DeleteConfirmationModal
           onDelete={() => handleDelete(toy.id)}

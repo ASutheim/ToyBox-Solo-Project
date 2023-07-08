@@ -47,7 +47,8 @@ h2{
 }
 
 .list-header{
+display: flex;
 text-align: left;
-margin-top: 15px;
+margin-top: 5px;
 margin-bottom: 20px;
 }

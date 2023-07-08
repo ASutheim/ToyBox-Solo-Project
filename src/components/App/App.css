@@ -67,9 +67,32 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
-  text-decoration: none;
+  color: #008183;
+  background-color: #FBD898;
+  cursor: pointer;
 }
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+
+.btn{
+  margin-top: 15px;
+  border-radius: 10px;
+  border-color: #f4b640;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  background-color:  #00ada7;
+  color: white;
+  align-self: end;
+  }
+  
+  
 
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {

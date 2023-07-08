@@ -8,5 +8,9 @@
 }
 
 .css-185gdzj-MuiCardHeader-root {
-  padding: 0px; 
+  padding: 0px;
+}
+
+.card{
+    padding: 5px;
 }

@@ -1,0 +1,28 @@
+.formPanel{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2{
+    text-align: center;
+    padding: 20px;
+}
+
+.label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+}
+.input {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    width: max-content;
+    height: max-content;
+}
+
+.btn-container {
+    align-self: end;
+}

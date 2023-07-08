@@ -4,27 +4,17 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Typography from "@mui/material/Typography";
-import "./ToyItem.css"
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
 
-function ToyItem({ toy, handleNavigateDetailView, handleEdit, canEdit }) {
+import Typography from "@mui/material/Typography";
+import "./ToyItem.css";
+
+function ToyItem({ toy, handleNavigateDetailView }) {
   return (
+    <div className="card">
     <Card
       sx={{ width: 200, height: 300, padding: 1, elevation: 3 }}
       className="toy-card"
     >
-      {canEdit && (
-        <CardHeader
-          action={
-            <IconButton aria-label="settings" className="edit-button">
-              <EditIcon onClick={handleEdit} />
-            </IconButton>
-          }
-        />
-      )}
       <CardMedia
         component="img"
         height="194"
@@ -40,6 +30,7 @@ function ToyItem({ toy, handleNavigateDetailView, handleEdit, canEdit }) {
         </Typography>
       </CardContent>
     </Card>
+    </div>
   );
 }
 

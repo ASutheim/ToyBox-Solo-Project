@@ -195,9 +195,7 @@ function ToyEdit() {
     for (let option of options) {
       if (option.checked) {
         array.push(option.value);
-        console.log("arrayyyyyyyyyyyyY!", array);
       }
-      console.log("arrayyyyyyyyyyyyY!", array);
     }
     setToyInfo({ ...toyInfo, toy_categories: array });
   };
@@ -230,6 +228,7 @@ function ToyEdit() {
   };
 
   return (
+    <div className="edit-container">
     <form id="edit_form" onSubmit={handleEditSubmit}>
       <label for="name">Name:</label>
       <input
@@ -284,6 +283,7 @@ function ToyEdit() {
       </label>
       <button type="submit">Submit</button>
     </form>
+    </div>
   );
 }
 

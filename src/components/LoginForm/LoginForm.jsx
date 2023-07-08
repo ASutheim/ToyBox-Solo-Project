@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import "./LoginForm.css"
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,6 +26,8 @@ function LoginForm() {
   }; // end login
 
   return (
+    <div className="login-container">
+
     <form className="formPanel" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (
@@ -32,9 +35,9 @@ function LoginForm() {
           {errors.loginMessage}
         </h3>
       )}
-      <div>
+      <div className="input"> 
         <label htmlFor="username">
-          Username:
+          Username:{" "} 
           <input
             type="text"
             name="username"
@@ -44,9 +47,9 @@ function LoginForm() {
           />
         </label>
       </div>
-      <div>
+      <div className="input">
         <label htmlFor="password">
-          Password:
+          Password:{" "} 
           <input
             type="password"
             name="password"
@@ -56,10 +59,10 @@ function LoginForm() {
           />
         </label>
       </div>
-      <div>
+      <div className='btn-container'>
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
-    </form>
+    </form></div>
   );
 }
 
