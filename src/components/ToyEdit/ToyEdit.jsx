@@ -20,51 +20,121 @@ function ToyEdit() {
     toy_categories: toy.toy_categories,
   });
 
-  const categoryOptions = [
-    { name: "Outdoors", value: 1, checked: "" },
-    { name: "Sports", value: 2, checked: "" },
-    { name: "STEM", value: 3, checked: "" },
-    { name: "Art and Music", value: 4, checked: "" },
-    { name: "Language/Reading", value: 5, checked: "" },
-    { name: "Play Pretend", value: 6, checked: "" },
-    { name: "Dolls/Figurines", value: 7, checked: "" },
-    { name: "Animals", value: 8, checked: "" },
-    { name: "Vehicles", value: 9, checked: "" },
-    { name: "Tools", value: 10, checked: "" },
-    { name: "Puzzles", value: 11, checked: "" },
-    { name: "Games", value: 12, checked: "" },
-    { name: "Electronics", value: 13, checked: "" },
-    { name: "Building", value: 14, checked: "" },
-    { name: "Collectibles", value: 15, checked: "" },
-    { name: "Sensory", value: 16, checked: "" },
+  const [outdoorChecked, setOutdoorChecked] = useState(false);
+  const [sportsChecked, setSportsChecked] = useState(false);
+  const [stemChecked, setStemChecked] = useState(false);
+  const [artChecked, setArtChecked] = useState(false);
+  const [languageChecked, setLanguageChecked] = useState(false);
+  const [pretendChecked, setPretendChecked] = useState(false);
+  const [dollsChecked, setDollsChecked] = useState(false);
+  const [animalsChecked, setAnimalsChecked] = useState(false);
+  const [vehiclesChecked, setVehiclesChecked] = useState(false);
+  const [toolsChecked, setToolsChecked] = useState(false);
+  const [puzzlesChecked, setPuzzlesChecked] = useState(false);
+  const [gamesChecked, setGamesChecked] = useState(false);
+  const [electronicsChecked, setElectronicsChecked] = useState(false);
+  const [buildingChecked, setBuildingChecked] = useState(false);
+  const [collectiblesChecked, setCollectiblesChecked] = useState(false);
+  const [sensoryChecked, setSensoryChecked] = useState(false);
+
+  let categoryOptions = [
+    {
+      name: "Outdoors",
+      value: 1,
+      setter: setOutdoorChecked,
+      set: outdoorChecked,
+    },
+    { name: "Sports", value: 2, setter: setSportsChecked, set: sportsChecked },
+    { name: "STEM", value: 3, setter: setStemChecked, set: stemChecked },
+    { name: "Art and Music", value: 4, setter: setArtChecked, set: artChecked },
+    {
+      name: "Language/Reading",
+      value: 5,
+      setter: setLanguageChecked,
+      set: languageChecked,
+    },
+    {
+      name: "Play Pretend",
+      value: 6,
+      setter: setPretendChecked,
+      set: pretendChecked,
+    },
+    {
+      name: "Dolls/Figurines",
+      value: 7,
+      setter: setDollsChecked,
+      set: dollsChecked,
+    },
+    {
+      name: "Animals",
+      value: 8,
+      setter: setAnimalsChecked,
+      set: animalsChecked,
+    },
+    {
+      name: "Vehicles",
+      value: 9,
+      setter: setVehiclesChecked,
+      set: vehiclesChecked,
+    },
+    { name: "Tools", value: 10, setter: setToolsChecked, set: toolsChecked },
+    {
+      name: "Puzzles",
+      value: 11,
+      setter: setPuzzlesChecked,
+      set: puzzlesChecked,
+    },
+    { name: "Games", value: 12, setter: setGamesChecked, set: gamesChecked },
+    {
+      name: "Electronics",
+      value: 13,
+      setter: setElectronicsChecked,
+      set: electronicsChecked,
+    },
+    {
+      name: "Building",
+      value: 14,
+      setter: setBuildingChecked,
+      set: buildingChecked,
+    },
+    {
+      name: "Collectibles",
+      value: 15,
+      setter: setCollectiblesChecked,
+      set: collectiblesChecked,
+    },
+    {
+      name: "Sensory",
+      value: 16,
+      setter: setSensoryChecked,
+      set: sensoryChecked,
+    },
   ];
+
+  function handleChange(setter, set) {
+    return () => {
+      setter(set);
+      dispatch({ type: "SET_TOY", payload: toyInfo });
+    };
+    console.log("Here's the toy after the handleChange is called:", toyInfo);
+  }
 
   const handleCategoryDefaults = () => {
     return categoryOptions.map((category) => {
-      if (toy.toy_categories.includes(category.name)) {
-        category.checked = true; // Update the checked value for matching categories
-      } else {
-        category.checked = false;
-      }
       return (
         <label htmlFor={category.name} key={category.value}>
           <input
             type="checkbox"
             className="category"
+            name="categories"
             value={category.value}
-            checked={category.checked}
-            onChange={handleCategoryChange(category)}
+            checked={category.set}
+            onChange={handleChange(category.setter, !category.set)}
           />
           {category.name}
         </label>
       );
     });
-  };
-  const handleCategoryChange = (category) => {
-    return (event) => {
-      const isChecked = event.target.checked;
-      category.checked = isChecked;
-    };
   };
 
   const ageOptions = [
@@ -120,11 +190,14 @@ function ToyEdit() {
 
   const handleCategoriesOptions = () => {
     let options = document.getElementsByName("categories");
+    console.log("inside Handle categories options", options);
     let array = toyInfo.toy_categories;
     for (let option of options) {
       if (option.checked) {
         array.push(option.value);
+        console.log("arrayyyyyyyyyyyyY!", array);
       }
+      console.log("arrayyyyyyyyyyyyY!", array);
     }
     setToyInfo({ ...toyInfo, toy_categories: array });
   };

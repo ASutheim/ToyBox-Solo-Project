@@ -8,8 +8,6 @@ function* getToys(action) {
     console.log("Get toys saga returns toy data:", toys.data);
     yield put({ type: "RESET_TOY" });
     yield put({ type: "SET_TOYS", payload: toys.data });
-    console.log("IT'S TOYS ALL THE WAY DOWN!", toys);
-    console.log("toy id!", action.payload.id);
     for (let toy of toys.data) {
       console.log("Inside loop of toys! Here's a toy:", toy.id);
       if (toy.id === parseInt(action.payload.id)) {

@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import ToyEdit from "../ToyEdit/ToyEdit";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+
 
 import "./ToyView.css";
 
@@ -65,14 +60,10 @@ function ToyView() {
     );
   };
 
-  const [showBorrowModal, setShowBorrowModal] = useState(false);
-
-  const borrowModal = () => {
-    if (toy?.owner_id != user.id) {
-      return <div>Borrow Modal</div>;
-    }
-  };
-
+  const handleBorrowPopup =() => {
+    console.log ()
+  }
+ 
   if (showEdit) {
     return <ToyEdit />;
   }
@@ -109,18 +100,20 @@ function ToyView() {
               </button>
             </>
           )}
-          {toy?.owner_id !== user?.id && (
-            <button
-              id="borrow_button"
-              onClick={() => setShowBorrowModal(!showBorrowModal)}
-            >
-              Ask to borrow?
-            </button>
+          {toy?.owner_id !== user?.id && (<div>
+           <button id="openPopup" onClick={handleBorrowPopup}>Ask to borrow?</button>
+
+           <div id="popup" className="popup">
+             <div className="popup-content">
+              <p>{toy?.name} belongs to {toy.owner}</p>
+               <button id="closePopup">Close</button>
+             </div>
+           </div></div>
           )}
         </div>
       </div>
 
-      {showDeleteModal && ownerViewOnly && (
+      {showDeleteModal && (
         <DeleteConfirmationModal
           onDelete={() => handleDelete(toy.id)}
           onCancel={handleCancel}
