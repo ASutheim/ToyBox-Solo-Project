@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import "./ToyForm.css";
 const ToyForm = () => {
   const dispatch = useDispatch();
 
@@ -57,12 +58,13 @@ const ToyForm = () => {
   };
 
   return (
-    <div className="form">
-      <form id="input_form" onSubmit={handleSubmit}>
+    <div>
+      <form id="input_form" onSubmit={handleSubmit} className="toy-form">
         <label for="name">Name:</label>
         <input
           type="text"
           id="name"
+          className="toy-form-input"
           name="name"
           value={newToy.name}
           required
@@ -73,6 +75,7 @@ const ToyForm = () => {
         <textarea
           type="text"
           id="description"
+          className="toy-form-input"
           name="description"
           rows="4"
           value={newToy.description}
@@ -85,6 +88,7 @@ const ToyForm = () => {
         <input
           type="text"
           id="picture_url"
+          className="toy-form-input"
           name="picture_url"
           value={newToy.picture_url}
           onChange={(e) =>
@@ -92,7 +96,7 @@ const ToyForm = () => {
           }
         />
 
-        <fieldset id="age" value={newToy.age}>
+        <fieldset id="age" value={newToy.age} className="toy-form-fieldset">
           <legend>Age:</legend>
           <label for="age1">
             <input type="checkbox" id="age" name="age" value="1" />
@@ -120,7 +124,7 @@ const ToyForm = () => {
           </label>
         </fieldset>
 
-        <fieldset id="categories">
+        <fieldset id="categories" className="toy-form-fieldset">
           <legend>Categories:</legend>
           <label for="Outdoors">
             <input type="checkbox" id="category" name="categories" value="1" />
@@ -188,7 +192,9 @@ const ToyForm = () => {
           </label>
         </fieldset>
 
-        <button type="submit">Submit</button>
+        <button type="submit" id="toy-form-submit-button">
+          Submit
+        </button>
       </form>
     </div>
   );
