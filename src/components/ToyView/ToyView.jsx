@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import ToyEdit from "../ToyEdit/ToyEdit";
-
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 import "./ToyView.css";
 
@@ -60,10 +61,6 @@ function ToyView() {
     );
   };
 
-  const handleBorrowPopup =() => {
-    console.log ()
-  }
- 
   if (showEdit) {
     return <ToyEdit />;
   }
@@ -100,15 +97,36 @@ function ToyView() {
               </button>
             </>
           )}
-          {toy?.owner_id !== user?.id && (<div>
-           <button id="openPopup" onClick={handleBorrowPopup}>Ask to borrow?</button>
-
-           <div id="popup" className="popup">
-             <div className="popup-content">
-              <p>{toy?.name} belongs to {toy.owner}</p>
-               <button id="closePopup">Close</button>
-             </div>
-           </div></div>
+          {toy?.owner_id !== user?.id && (
+            <div>
+              <Popup
+                trigger={
+                  <button id="openPopup" onClick={open}>
+                    Ask to borrow?
+                  </button>
+                }
+                modal
+                nested
+              >
+                {(close) => (
+                  <div className="popup-content">
+                    <p>
+                      This <b> {toy?.name}</b> belongs to: <b>{toy.owner}</b>.
+                    </p>
+                    <p>
+                      It is currently <b>{toy.status}!</b>
+                    </p>
+                    <p>Here's the email address to get in touch:</p>
+                    <p>
+                      <b>{toy.email}</b>
+                    </p>
+                    <button id="closePopup" onClick={close}>
+                      Got it!
+                    </button>
+                  </div>
+                )}
+              </Popup>
+            </div>
           )}
         </div>
       </div>
