@@ -28,7 +28,7 @@ function ToyList() {
   return (
     <div className="list_container">
       <div className="list-header">
-        <h2>Your Toys:</h2>
+        <h2>My Shared Toys:</h2>
       </div>
       <div className="toy-list">
         {usersToys.map((toy) => (

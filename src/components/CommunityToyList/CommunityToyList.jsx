@@ -145,6 +145,7 @@ function CommunityToyList() {
               <option value="12 and up">12 and up</option>
               <option value="Any age!">Any age!</option>
             </select>
+           
           </div>
           <button id="search_button" onClick={handleSearch}>
             Search

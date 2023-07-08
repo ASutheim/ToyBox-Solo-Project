@@ -3,7 +3,11 @@
 --hunyadi-yellow: #FDB348ff;
 --bittersweet: #FF5B4Fff;
 --pistachio: #91CE66ff;
---rust: #B74A25ff;
+--rust: #B74A25ff
+-- header-blue: #00ada7
+-- header-yellow: #f4b640
+
+
 
 /* CSS HSL */
 --tiffany-blue: hsla(155, 42%, 76%, 1);

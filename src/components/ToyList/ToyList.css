@@ -35,3 +35,19 @@
 .toy-card {
   background-color: #f2f2f2 !important;
 }
+
+h2{
+  font-size: 30px;
+  font-weight: 700;
+  color: #00807B;
+  padding-left: 10px;
+  margin: 0;
+  text-shadow: 1px 1px 2px #A7DBC5ff;
+  
+}
+
+.list-header{
+text-align: left;
+margin-top: 15px;
+margin-bottom: 20px;
+}

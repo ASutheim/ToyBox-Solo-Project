@@ -59,13 +59,16 @@ const ToyForm = () => {
 
   return (
     <div>
+     
       <form id="input_form" onSubmit={handleSubmit} className="toy-form">
+      <div className="form-head"><p >Add a new toy!</p></div>
         <label for="name">Name:</label>
         <input
           type="text"
           id="name"
           className="toy-form-input"
           name="name"
+          placeholder="A name for your toy"
           value={newToy.name}
           required
           onChange={(e) => setNewToy({ ...newToy, name: e.target.value })}
@@ -77,6 +80,7 @@ const ToyForm = () => {
           id="description"
           className="toy-form-input"
           name="description"
+          placeholder="Tell people about this toy! How do you use it? What makes it great? Any condition notes, like missing pieces?"
           rows="4"
           value={newToy.description}
           onChange={(e) =>
@@ -90,6 +94,7 @@ const ToyForm = () => {
           id="picture_url"
           className="toy-form-input"
           name="picture_url"
+          placeholder="A link to a photo of your toy"
           value={newToy.picture_url}
           onChange={(e) =>
             setNewToy({ ...newToy, picture_url: e.target.value })
@@ -192,7 +197,7 @@ const ToyForm = () => {
           </label>
         </fieldset>
 
-        <button type="submit" id="toy-form-submit-button">
+        <button type="submit" className="button">
           Submit
         </button>
       </form>

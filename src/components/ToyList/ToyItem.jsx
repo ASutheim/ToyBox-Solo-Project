@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-
+import "./ToyItem.css"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -29,7 +29,6 @@ function ToyItem({ toy, handleNavigateDetailView, handleEdit, canEdit }) {
         component="img"
         height="194"
         image={toy.picture_url}
-        alt="Paella dish"
         // Make the Image shrink or stretch to fit into the card
         sx={{ objectFit: "contain" }}
         // When we want to navigate to the detail view, make sure to pass the toy's id so we can navigate correctly!

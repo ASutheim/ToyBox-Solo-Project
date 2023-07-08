@@ -13,7 +13,7 @@
 }
 
 .nav-title {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 700;
   color: #f4b640;
   padding-left: 10px;
@@ -25,15 +25,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 80%
 }
 .navLink {
   display: inline-block;
   color: #f2f2f2;
   background-color: #00acb0;
   text-align: center;
-  padding: 15px;
+  padding: 10px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 25px;
   text-shadow: #008183 1px 1px 1px;
 
   /* these last two make the logout button in
@@ -47,6 +48,7 @@
   background-color: #f4b640;
   color: #008183;
   text-shadow: #008183 1px 1px 1px;
+  border-radius: 5px;
 }
 
 .toybox {
@@ -54,3 +56,4 @@
   align-items: center;
   flex-direction: column;
 }
+

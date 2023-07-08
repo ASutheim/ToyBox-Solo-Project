@@ -14,11 +14,59 @@
 .search-list-form {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   margin: 12px;
 }
 
 .search-input {
-  margin: 0 5px;
+  margin: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search_fields {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="text"] {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  padding: 7px;
+  padding-right: 20px;
+}
+
+select {
+  padding: 7px;
+  font-size: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+#search_button {
+  color: #f2f2f2;
+  background-color: #00807b;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+#search_button:hover {
+  background-color: #f1cb83;
+  color: black;
+  border-radius: 5px;
+}
+
+#search_button:active {
+  transform: translateY(2px);
+  cursor: pointer;
 }
