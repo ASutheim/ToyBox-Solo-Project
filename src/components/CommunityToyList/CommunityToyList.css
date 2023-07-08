@@ -1,7 +1,24 @@
+.community-toy-list {
+  margin: 0 20px;
+}
+
 .community-toy-list-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
+  margin: 12px 0;
+}
+
+.search-list-form {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  margin: 12px;
+}
+
+.search-input {
+  margin: 0 5px;
 }

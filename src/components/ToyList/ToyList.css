@@ -3,6 +3,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  column-gap: 12px;
+  row-gap: 24px;
 }
 
 .toy_thumbnail {
@@ -24,4 +26,12 @@
 .toy-image-list-view {
   max-height: 100px;
   max-width: 100px;
+}
+
+.edit-button {
+  color: #a7dbc5ff;
+}
+
+.toy-card {
+  background-color: #f2f2f2 !important;
 }
