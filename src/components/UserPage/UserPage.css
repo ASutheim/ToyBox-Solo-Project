@@ -2,12 +2,18 @@
   display: flex;
   height: 80%;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-evenly;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+  width: 60%;
+}
+
+.form {
+  width: 30%;
+  padding: 20px;
+}
