@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./ToyList.css";
 
-// import ToyView from "../ToyView/ToyView.jsx";
+import ToyItem from "./ToyItem";
 
 function ToyList() {
   const dispatch = useDispatch();
@@ -12,13 +12,19 @@ function ToyList() {
   const usersToys = allToys.filter((toy) => toy.owner_id === user);
   const history = useHistory();
 
+  const handleClick = (id, toyOwnerId, userId) => {
+    history.push(`/details/${id}`, { toyOwnerId, userId });
+  };
+
+  //TODO -> Write a handleEdit function for what you want to happen when you click the edit button.
+  const handleEdit = () => {
+    //Stuff here, please!
+  };
+
   useEffect(() => {
     dispatch({ type: "GET_TOYS" });
   }, []);
 
-  const handleClick = (id, toyOwnerId, userId) => {
-    history.push(`/details/${id}`, { toyOwnerId, userId });
-  };
   return (
     <div className="list_container">
       <div className="list-header">
@@ -26,23 +32,12 @@ function ToyList() {
       </div>
       <div className="toy-list">
         {usersToys.map((toy) => (
-          <div
-            className="toy_thumbnail"
-            key={toy.id}
-            onClick={() => handleClick(toy.id, toy.owner)}
-          >
-            <div className="edit">
-              <img src="main/documentation/images/edit_icon.png" />
-            </div>
-            <div className="image">
-              <img
-                src={toy.picture_url}
-                alt={toy.name}
-                className="toy-image-list-view"
-              />
-            </div>
-            <p className="toy_name">{toy.name}</p>
-          </div>
+          <ToyItem
+            toy={toy}
+            handleNavigateDetailView={handleClick}
+            canEdit={true}
+            handleEdit={handleEdit}
+          />
         ))}
       </div>
     </div>

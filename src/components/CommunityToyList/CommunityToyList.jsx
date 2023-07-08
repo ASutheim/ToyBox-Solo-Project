@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./CommunityToyList.css";
 
+import ToyItem from "../ToyList/ToyItem";
+
 function CommunityToyList() {
   const dispatch = useDispatch();
   const allToys = useSelector((store) => store.toys);
@@ -94,10 +96,10 @@ function CommunityToyList() {
   };
 
   return (
-    <div>
-      <div id="search_fields">
-        <form id="search_list_form">
-          <div id="search_by_name">
+    <div className="community-toy-list">
+      <div className="search_fields">
+        <form className="search-list-form">
+          <div id="search_by_name" className="search-input">
             <input
               type="text"
               value={searchText}
@@ -105,7 +107,7 @@ function CommunityToyList() {
               placeholder="Search toys by name..."
             />
           </div>
-          <div id="search_by_category">
+          <div id="search_by_category" className="search-input">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
@@ -129,7 +131,7 @@ function CommunityToyList() {
               <option value="Sensory">Sensory</option>
             </select>
           </div>
-          <div id="search_by_age">
+          <div id="search_by_age" className="search-input">
             <select
               value={selectedAge}
               onChange={(e) => setSelectedAge(e.target.value)}
@@ -156,12 +158,7 @@ function CommunityToyList() {
 
       <div className="community-toy-list-container">
         {toysToDisplay.map((toy) => (
-          <div key={toy.id} onClick={() => handleClick(toy.id)}>
-            <div className="toy-image-list-view ">
-              <img src={toy.picture_url} alt={toy.name} />
-            </div>
-            <p>{toy.name}</p>
-          </div>
+          <ToyItem toy={toy} handleNavigateDetailView={handleClick} />
         ))}
       </div>
     </div>
