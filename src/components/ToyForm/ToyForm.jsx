@@ -12,7 +12,7 @@ const ToyForm = () => {
     name: "",
     description: "",
     picture_url: "",
-    status: "Available",
+    status: "",
     age: [],
     categories: [],
   };
@@ -100,13 +100,6 @@ const ToyForm = () => {
           onChange={(e) =>
             setNewToy({ ...newToy, picture_url: e.target.value })
           }
-        />
-
-        <input
-          type="hidden"
-          name="status"
-          value="Available"
-          onChange={(e) => setNewToy({ ...newToy, status: e.target.value })}
         />
 
         <fieldset id="age" value={newToy.age} className="toy-form-fieldset age">

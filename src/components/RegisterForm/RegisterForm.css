@@ -1,0 +1,26 @@
+.input {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    width: max-content;
+    height: max-content;
+  }
+
+.input:text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    width: max-content;
+    height: max-content;
+
+}
+
+  .formPanel {
+    display: flex;
+  }
+
+  label {
+    padding-right: 5px;
+  }

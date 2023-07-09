@@ -86,12 +86,13 @@ router.post("/", async (req, res) => {
       await client.query(`BEGIN;`);
 
       //First phase of post inserts the 1 to 1 info into the toy_info table
-      const queryText1 = `INSERT INTO "toy_info" (owner_id, name, description, picture_url) VALUES ($1, $2, $3, $4) RETURNING id;`;
+      const queryText1 = `INSERT INTO "toy_info" (owner_id, name, description, picture_url, status) VALUES ($1, $2, $3, $4, $5) RETURNING id;`;
       const values1 = [
         req.body.owner_id,
         req.body.name,
         req.body.description,
         req.body.picture_url,
+        "Available",
       ];
 
       // Save the successful post on the toy table as a result, so we can access it later.
