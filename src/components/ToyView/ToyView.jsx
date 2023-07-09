@@ -5,6 +5,10 @@ import ToyEdit from "../ToyEdit/ToyEdit";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+
 import "./ToyView.css";
 
 function ToyView() {
@@ -49,10 +53,10 @@ function ToyView() {
           <h3>Confirm Deletion</h3>
           <p>Are you sure you want to delete this toy?</p>
           <div className="modal-buttons">
-            <button className="btn-delete" onClick={onDelete}>
+            <button className="base-button" onClick={onDelete}>
               Delete
             </button>
-            <button className="btn-cancel" onClick={onCancel}>
+            <button className="base-button" onClick={onCancel}>
               Cancel
             </button>
           </div>
@@ -91,10 +95,22 @@ function ToyView() {
         <div className="detail-controls">
           {toy?.owner_id === user?.id && (
             <>
-              <button id="delete" onClick={handleClickDelete}>
+              <Button
+                variant="contained"
+                startIcon={<DeleteIcon />}
+                onClick={handleClickDelete}
+                className="base-button"
+              >
                 Delete this toy
-              </button>
-              <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
+              </Button>
+              <Button
+                variant="contained"
+                startIcon={<EditIcon />}
+                onClick={() => setShowEdit(!showEdit)}
+                className="base-button"
+              >
+                Edit This Toy
+              </Button>
             </>
           )}
           {toy?.owner_id !== user?.id && (
