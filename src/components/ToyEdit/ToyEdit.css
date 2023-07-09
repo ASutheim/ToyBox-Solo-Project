@@ -1,5 +1,10 @@
 .edit-container {
   margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: 24px auto;
 }
 
 #edit_form {
@@ -7,28 +12,59 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 24px;
+  border: 5px solid #a7dbc5ff;
+  border-radius: 10px;
 }
 
-.sixty-percent-width {
-  width: 60%;
+/* 
+There is some styling bleeding from other components. 
+For this page, we want all inputs to have a font size of 15px.
+*/
+#edit_form input {
+  font-size: 15px;
 }
+
+/* 
+There is some styling bleeding from other components. 
+For this page, we want all labels to have a font size of 15px.
+*/
+#edit_form label {
+  font-size: 15px;
+}
+
+/* 
+Create Space in between the input checkboxes
+*/
+.edit-form label {
+  margin: 0 5px;
+}
+
+/* 
+Make the on loan checkbox prominent
+*/
+label#on-loan-checkbox {
+  font-size: 20px;
+  margin: 8px 0;
+}
+
 .checkbox-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-input[type="text"] {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 3px;
-  width: 60%;
-  font-size: 15px;
+
+.description-input {
+  width: 100%;
 }
 
-textarea {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 5px;
-  font-size: 18px;
+.toy-form-fieldset.edit-form {
+  margin-top: 5px;
+}
+
+.toy-form-input.futsy-size {
+  width: 94%;
 }
 
 .top-row {
@@ -39,11 +75,6 @@ textarea {
   justify-content: center;
 }
 
-.description-container {
-  padding: 10px;
-  width: 70%;
-}
-
 label {
   padding-bottom: 5px;
   padding-top: 5px;
@@ -51,7 +82,8 @@ label {
   font-size: 18px;
 }
 
-.submit-button {
+/* Not entirely sure if I need to use this later. Commenting out for now. */
+/* .submit-button {
   color: #f2f2f2;
   background-color: #00807b;
   text-align: center;
@@ -72,4 +104,4 @@ label {
 submit-button:active {
   transform: translateY(2px);
   cursor: pointer;
-}
+} */

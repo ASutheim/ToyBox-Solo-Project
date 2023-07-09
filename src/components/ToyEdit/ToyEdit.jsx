@@ -230,67 +230,68 @@ function ToyEdit() {
   return (
     <div className="edit-container">
       <form id="edit_form" onSubmit={handleEditSubmit}>
-        <div className="top-row">
-          <label for="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            className="toy-form-input"
-            name="name"
-            defaultValue={toyInfo.name}
-            required
-            onChange={(e) => setToyInfo({ ...toyInfo, name: e.target.value })}
-          />
-          <label for="picture_url">Picture URL:</label>
-          <input
-            type="text"
-            id="picture_url"
-            className="toy-form-input"
-            name="picture_url"
-            defaultValue={toyInfo.picture_url}
-            onChange={(e) =>
-              setToyInfo({ ...toyInfo, picture_url: e.target.value })
-            }
-          />
+        <div className="form-head">
+          <p>Edit Your Toy!</p>
         </div>
-        <div className="description-container">
-          <label for="description">Description:</label>
-          <textarea
-            type="text"
-            id="description"
-            className="toy-form-input"
-            name="description"
-            rows="4"
-            defaultValue={toyInfo.description}
-            onChange={(e) =>
-              setToyInfo({ ...toyInfo, description: e.target.value })
-            }
-          />
-        </div>
-        <div className="checkbox-container">
-          <section className="sixty-percent-width">
-            <fieldset
-              id="age"
-              value={toyInfo.toy_ages}
-              className="toy-form-fieldset"
-            >
-              <legend>Ages:</legend>
-              {handleAgeDefaults()}
-            </fieldset>
-          </section>
-          <section className="sixty-percent-width">
-            <fieldset
-              id="categories"
-              value={toyInfo.toy_categories}
-              className="toy-form-fieldset"
-            >
-              <legend>Categories:</legend>
-              {handleCategoryDefaults()}
-            </fieldset>
-          </section>
-        </div>
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          className="toy-form-input futsy-size"
+          name="name"
+          defaultValue={toyInfo.name}
+          required
+          onChange={(e) => setToyInfo({ ...toyInfo, name: e.target.value })}
+        />
+        {/* 
+        <div className="description-input"> */}
+        <label for="description">Description:</label>
+        <textarea
+          type="text"
+          id="description"
+          className="toy-form-input "
+          name="description"
+          rows="4"
+          defaultValue={toyInfo.description}
+          onChange={(e) =>
+            setToyInfo({ ...toyInfo, description: e.target.value })
+          }
+        />
+        {/* </div> */}
 
-        <label>
+        <label for="picture_url">Picture URL:</label>
+        <input
+          type="text"
+          id="picture_url"
+          className="toy-form-input futsy-size"
+          name="picture_url"
+          defaultValue={toyInfo.picture_url}
+          onChange={(e) =>
+            setToyInfo({ ...toyInfo, picture_url: e.target.value })
+          }
+        />
+
+        <label for="age">Ages:</label>
+        <fieldset
+          id="age"
+          value={toyInfo.toy_ages}
+          className="toy-form-fieldset edit-form futsy-size"
+        >
+          {/* <legend>Ages:</legend> */}
+          {handleAgeDefaults()}
+        </fieldset>
+
+        <label for="categories">Categories:</label>
+        <fieldset
+          id="categories"
+          value={toyInfo.toy_categories}
+          className="toy-form-fieldset edit-form futsy-size"
+        >
+          {/* <legend>Categories:</legend> */}
+          {handleCategoryDefaults()}
+        </fieldset>
+
+        <label id="on-loan-checkbox">
           <input
             type="checkbox"
             id="status"
@@ -299,7 +300,7 @@ function ToyEdit() {
           />{" "}
           Mark this toy as "on loan"
         </label>
-        <button type="submit" className="submit-button">
+        <button type="submit" className="base-button">
           Submit
         </button>
       </form>
