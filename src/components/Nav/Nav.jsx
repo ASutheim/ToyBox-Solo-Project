@@ -10,10 +10,12 @@ function Nav() {
   return (
     <div className="nav">
       <div className="toybox">
-        <img src={require("./photoOne.jpeg")} height="100" />
+      <img src={require("./stock4.jpg")} height="140" id="header-image1"/>
         <Link to="/home">
-          <h2 className="nav-title">ToyBox</h2>
+          <h2 className="nav-title"> —— ToyBox —— </h2>
         </Link>
+    
+        <img src={require("./stock1.jpg")} height="140" id="header-image2"/>
       </div>
       <br></br>
       <div className="links_bar">
