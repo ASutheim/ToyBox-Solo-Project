@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import "./ToyEdit.css";
 
-function ToyEdit() {
+function ToyEdit({ setShowEdit }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const toy = useSelector((store) => store.toy);
+  const user = useSelector((store) => store.user.id);
+  const userId = user.id;
   const { id } = useParams();
-  console.log("TOYINFOOOOOOOOO:", toy);
 
   const [toyInfo, setToyInfo] = useState({
     id: id,
@@ -116,7 +117,6 @@ function ToyEdit() {
       setter(set);
       dispatch({ type: "SET_TOY", payload: toyInfo });
     };
-    console.log("Here's the toy after the handleChange is called:", toyInfo);
   }
 
   const handleCategoryDefaults = () => {
@@ -209,23 +209,26 @@ function ToyEdit() {
 
     //Dispatches the info to the SAGA reducer
     dispatch({ type: "UPDATE_TOY", payload: toyInfo });
-    showConfirmation();
+    console.log("Back inside handleEditSubmit");
+    setShowEdit(false);
+    history.push(`/details/${id}`, { id, userId });
   };
 
-  const showConfirmation = () => {
-    return (
-      <div className="popup" id="confirmationPopup">
-        <p>
-          You've updated <b>{toyInfo.name}</b>
-        </p>
-        <button onClick={closePopup()}>Close</button>
-      </div>
-    );
-  };
+  // const showConfirmation = () => {
+  //   console.log("Inside show confirmation");
+  //   return (
+  //     <div className="popup" id="confirmationPopup">
+  //       <p>
+  //         You've updated <b>{toyInfo.name}</b>
+  //       </p>
+  //       <button onClick={closePopup()}>Close</button>
+  //     </div>
+  //   );
+  // };
 
-  const closePopup = () => {
-    history.push("/user");
-  };
+  // const closePopup = () => {
+  //   history.push("/user");
+  // };
 
   return (
     <div className="edit-container">

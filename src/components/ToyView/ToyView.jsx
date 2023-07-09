@@ -13,19 +13,14 @@ import "./ToyView.css";
 
 function ToyView() {
   const dispatch = useDispatch();
-  const id = useParams();
+  const { id } = useParams();
   const history = useHistory();
   const toy = useSelector((store) => store.toy);
   const user = useSelector((store) => store.user);
 
-  console.log("USER:", user.id);
-  console.log("TOY OWNER:", toy?.owner_id);
-
-  const [loading, setLoading] = useState(true);
-
   //Get request for toy of the given ID
   useEffect(() => {
-    dispatch({ type: "GET_TOYS", payload: id });
+    dispatch({ type: "GET_TOY", payload: id });
   }, []);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -66,7 +61,7 @@ function ToyView() {
   };
 
   if (showEdit) {
-    return <ToyEdit />;
+    return <ToyEdit setShowEdit={setShowEdit} />;
   }
   return (
     <div className="info-view">
