@@ -11,6 +11,11 @@
   padding: 0px;
 }
 
-.card{
-    padding: 5px;
+.card {
+  padding: 5px;
+}
+
+/* This is the color of your card */
+.toy-card {
+  background-color: #f2f2f2 !important;
 }
