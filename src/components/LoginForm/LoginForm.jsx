@@ -53,6 +53,7 @@ function LoginForm() {
           <input
             type="password"
             name="password"
+            id="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
