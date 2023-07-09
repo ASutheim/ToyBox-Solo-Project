@@ -94,10 +94,7 @@ function ToyView() {
               <button id="delete" onClick={handleClickDelete}>
                 Delete this toy
               </button>
-              <button onClick={() => setShowEdit(!showEdit)}>
-                <img src={require("./edit-white.jpg")} height="15" />
-                "Edit"
-              </button>
+              <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
             </>
           )}
           {toy?.owner_id !== user?.id && (
