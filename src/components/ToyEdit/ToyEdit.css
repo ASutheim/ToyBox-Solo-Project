@@ -1,33 +1,47 @@
 .edit-container {
-  display: flex;
-  flex-direction: rows;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  margin: 20px;
+  margin-top: 24px;
 }
 
+#edit_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sixty-percent-width {
+  width: 60%;
+}
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 input[type="text"] {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 5px;
-  max-width: 97%;
-  font-size: 18px;
+  padding: 3px;
+  width: 60%;
+  font-size: 15px;
 }
 
 textarea {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 5px;
-  max-width: 97%;
   font-size: 18px;
 }
 
-fieldset {
+.top-row {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-items: start;
-  margin-top: 20px;
-  max-height: 200px;
+  align-items: center;
+  width: 70%;
+  justify-content: center;
+}
+
+.description-container {
+  padding: 10px;
+  width: 70%;
 }
 
 label {
@@ -37,7 +51,7 @@ label {
   font-size: 18px;
 }
 
-button {
+.submit-button {
   color: #f2f2f2;
   background-color: #00807b;
   text-align: center;
@@ -48,14 +62,14 @@ button {
   border-radius: 5px;
 }
 
-button:hover {
+.submit-button:hover {
   background-color: #f1cb83;
   color: black;
   border-radius: 5px;
   cursor: pointer;
 }
 
-button:active {
+submit-button:active {
   transform: translateY(2px);
   cursor: pointer;
 }
