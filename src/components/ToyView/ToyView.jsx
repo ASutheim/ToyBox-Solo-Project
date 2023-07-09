@@ -39,7 +39,7 @@ function ToyView() {
     setShowDeleteModal(true);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
     setShowDeleteModal(false);
     console.log("Delete button pushed! ID to delete:", id);
     dispatch({ type: "DELETE_TOY", payload: id });
