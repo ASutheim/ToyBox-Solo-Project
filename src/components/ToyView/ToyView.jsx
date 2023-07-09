@@ -23,6 +23,8 @@ function ToyView() {
     dispatch({ type: "GET_TOY", payload: id });
   }, []);
 
+  console.log("Here's the toy's ID!!!", id);
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -143,7 +145,7 @@ function ToyView() {
       </div>
       {showDeleteModal && (
         <DeleteConfirmationModal
-          onDelete={() => handleDelete(toy.id)}
+          onDelete={() => handleDelete(id)}
           onCancel={handleCancel}
         />
       )}
