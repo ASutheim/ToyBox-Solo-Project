@@ -287,7 +287,7 @@ const ToyForm = () => {
           </section>
         </fieldset>
 
-        <button type="submit" className="button">
+        <button type="submit" className="base-button submit">
           Submit
         </button>
       </form>

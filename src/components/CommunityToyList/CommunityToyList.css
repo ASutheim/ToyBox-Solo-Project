@@ -49,26 +49,3 @@ select {
 select:hover {
   cursor: pointer;
 }
-
-#search_button {
-  color: #f2f2f2;
-  background-color: #00807b;
-  text-align: center;
-  padding: 5px;
-  text-decoration: none;
-  font-size: 20px;
-  margin: 10px;
-  border-radius: 5px;
-}
-
-#search_button:hover {
-  background-color: #f1cb83;
-  color: black;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#search_button:active {
-  transform: translateY(2px);
-  cursor: pointer;
-}

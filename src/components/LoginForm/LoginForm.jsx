@@ -60,7 +60,12 @@ function LoginForm() {
           </label>
         </div>
         <div className="btn-container">
-          <input className="btn" type="submit" name="submit" value="Log In" />
+          <input
+            className="base-button"
+            type="submit"
+            name="submit"
+            value="Log In"
+          />
         </div>
       </form>
     </div>

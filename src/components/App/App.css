@@ -38,46 +38,7 @@ Container
 Button
 -------------------------------------------------------------------------------- */
 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-color: #014041;
-  border-width: 1px 1px 3px;
-  border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
-  font-size: 1.1rem;
-  outline: 0;
-  cursor: pointer;
-}
-
-.btn_sizeMin {
-  min-height: 50px;
-  min-width: 100px;
-}
-
-.btn_sizeSm {
-  padding: 10px 15px;
-  font-size: 0.8rem;
-}
-
-.btn_sizeFull {
-  display: block;
-  width: 100%;
-}
-
-.btn:hover {
-  color: #008183;
-  background-color: #fbd898;
-  cursor: pointer;
-}
-
-.btn:active {
-  transform: translateY(2px);
-}
-
-.btn {
-  margin-top: 15px;
+.base-button {
   border-radius: 10px;
   border-color: #f4b640;
   padding-top: 5px;
@@ -88,6 +49,22 @@ Button
   font-size: 20px;
   background-color: #00ada7;
   color: white;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.base-button:hover {
+  cursor: pointer;
+  background-color: #f4b640;
+  color: #00807b;
+  font-style: bold;
+}
+
+.base-button:active {
+  transform: translateY(2px);
+}
+
+.base-button.submit {
   align-self: end;
 }
 
