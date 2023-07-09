@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 
-.list {
+.user-toy-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -13,7 +13,7 @@
   width: 60%;
 }
 
-.form {
+.toy-input-form {
   width: 35%;
   padding: 20px;
 }
