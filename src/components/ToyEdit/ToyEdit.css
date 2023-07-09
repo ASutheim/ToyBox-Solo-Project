@@ -45,7 +45,7 @@ Make the on loan checkbox prominent
 */
 label#on-loan-checkbox {
   font-size: 20px;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 .checkbox-container {
