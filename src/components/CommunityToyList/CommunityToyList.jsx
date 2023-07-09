@@ -67,16 +67,25 @@ function CommunityToyList() {
   const NoResultsModal = () => {
     return (
       <div className="modal">
+        <center><p id="no-results">No Results Found</p></center> 
         <div className="modal-content">
-          <h3>No Results Found</h3>
+          <div className="left-hand-side">
+         
+          <img src={require("./stock2.jpg")} width="400px"/></div>
+          <div className="right-hand-side">
           <p>
-            You searched for: {searchText} {selectedCategory} {selectedAge}
+            <b>You searched for: </b>
           </p>
-          <p>We don't have any toys that match your search! Try again?</p>
+          <p>
+            <b>Name:</b> "{searchText}" <br />
+            <b>Category:</b> {selectedCategory} <br />
+            <b>Age Group:</b> {selectedAge}
+          </p>
+          <p>We didn't find any toys that match that search! Try again?</p>
           <div className="modal-buttons">
-            <button className="btn-cancel" onClick={handleClearSearch}>
+            <button className="base-button" onClick={handleClearSearch}>
               Reset Search
-            </button>
+            </button></div>
           </div>
         </div>
       </div>
@@ -150,7 +159,10 @@ function CommunityToyList() {
             </select>
           </div>
           <button className="base-button" onClick={handleSearch}>
-            Search
+            Search!
+          </button>
+          <button className="base-button" onClick={handleClearSearch}>
+            Clear Search
           </button>
         </form>
       </div>

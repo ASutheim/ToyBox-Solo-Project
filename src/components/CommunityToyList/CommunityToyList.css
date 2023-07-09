@@ -49,3 +49,26 @@ select {
 select:hover {
   cursor: pointer;
 }
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: space-evenly;
+  flex-direction: row;
+}
+
+#no-results{
+color: #FF5B4Fff;
+font-size: 30px;
+}
+
+.left-hand-side{
+  margin: 20px;
+}
+
+.right-hand-side{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
