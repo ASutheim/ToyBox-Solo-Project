@@ -35,9 +35,12 @@ function CommunityToyList() {
     //stores each toy that passes the filter function in the array of filtered toys
     allToys.map((toy) => {
       if (
-        toy?.name && toy.name.toLowerCase().includes(searchText.toLowerCase()) &&
-        toy?.toy_categories && toy?.toy_categories.toString().includes(selectedCategory) &&
-        toy?.toy_ages && toy?.toy_ages.toString().includes(selectedAge)
+        toy?.name &&
+        toy.name.toLowerCase().includes(searchText.toLowerCase()) &&
+        toy?.toy_categories &&
+        toy?.toy_categories.toString().includes(selectedCategory) &&
+        toy?.toy_ages &&
+        toy?.toy_ages.toString().includes(selectedAge)
       ) {
         filteredToys.push(toy);
       }
