@@ -68,7 +68,7 @@ Button
 
 .btn:hover {
   color: #008183;
-  background-color: #FBD898;
+  background-color: #fbd898;
   cursor: pointer;
 }
 
@@ -76,8 +76,7 @@ Button
   transform: translateY(2px);
 }
 
-
-.btn{
+.btn {
   margin-top: 15px;
   border-radius: 10px;
   border-color: #f4b640;
@@ -87,12 +86,10 @@ Button
   padding-right: 15px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
-  background-color:  #00ada7;
+  background-color: #00ada7;
   color: white;
   align-self: end;
-  }
-  
-  
+}
 
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
@@ -130,7 +127,6 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
-
 .formPanel {
   box-sizing: border-box;
   width: 400px;
@@ -140,4 +136,18 @@ Form Treatment
   background-color: #efefef;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+}
+
+.toy-form-input {
+  width: 100%;
+  margin: 5px 0px;
+}
+
+.toy-form-fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: start;
+  width: 93%;
+  margin-top: 20px;
 }
