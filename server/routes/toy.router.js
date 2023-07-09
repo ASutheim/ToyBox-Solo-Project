@@ -52,6 +52,7 @@ router.get("/:id", (req, res) => {
   FULL JOIN category ON toy_category.category_id = category.id
   FULL JOIN toy_age ON toy_info.id = toy_age.toy_id
   FULL JOIN age ON toy_age.age_id = age.id
+  FULL JOIN user_email ON toy_info.owner_id = user_email.id 
   WHERE (toy_info.id = ${toyId})
   GROUP BY toy_info.owner_id, toy_info.name, toy_info.description, toy_info.picture_url, toy_info.status, user_email.email;`;
     pool
@@ -176,6 +177,7 @@ router.put("/:id", async (req, res) => {
 
   if (req.isAuthenticated()) {
     try {
+      await client.query(`BEGIN;`);
       const queryText1 = `UPDATE toy_info
         SET name = $1,
             picture_url = $2,
@@ -192,33 +194,35 @@ router.put("/:id", async (req, res) => {
 
       await client.query(queryText1, values1);
 
-      const queryText2 = `DELETE FROM toy_category WHERE toy_category.toy_id=$1`;
-      await client.query(queryText2, [toyId]);
+      // const queryText2 = `DELETE FROM toy_category WHERE toy_category.toy_id=$1`;
+      // await client.query(queryText2, [toyId]);
 
-      const queryText3 = `INSERT INTO "toy_category" (toy_id, category_id) VALUES ($1, $2)`;
-      const categoriesArray = req.body.categories;
-      for (let i = 0; i < categoriesArray.length; i++) {
-        await client.query(queryText3, [toyId, categoriesArray[i]]);
-      }
+      // const queryText3 = `INSERT INTO "toy_category" (toy_id, category_id) VALUES ($1, $2)`;
+      // const categoriesArray = req.body.categories;
+      // for (let i = 0; i < categoriesArray.length; i++) {
+      //   await client.query(queryText3, [toyId, categoriesArray[i]]);
+      // }
 
-      const queryText4 = `DELETE FROM toy_age WHERE toy_age.toy_id=$1`;
-      await client.query(queryText4, [toyId]);
+      // const queryText4 = `DELETE FROM toy_age WHERE toy_age.toy_id=$1`;
+      // await client.query(queryText4, [toyId]);
 
-      const queryText5 = `INSERT INTO "toy_age" (toy_id, age_id) VALUES ($1, $2)`;
-      const ageArray = req.body.age;
-      for (let i = 0; i < ageArray.length; i++) {
-        await client.query(queryText5, [toyId, ageArray[i]]);
-      }
+      // const queryText5 = `INSERT INTO "toy_age" (toy_id, age_id) VALUES ($1, $2)`;
+      // const ageArray = req.body.age;
+      // for (let i = 0; i < ageArray.length; i++) {
+      //   await client.query(queryText5, [toyId, ageArray[i]]);
+      // }
 
-      res.sendStatus(200);
+      //Commit the transaction
+      await client.query(`COMMIT;`);
+
+      res.sendStatus(201);
     } catch (error) {
-      // Rollback the transaction if any error occurred
       await client.query(`ROLLBACK;`);
 
       console.log("Error occurred:", error);
+      res.sendStatus(500);
     } finally {
       client.release();
-
       console.log("released");
     }
   }
