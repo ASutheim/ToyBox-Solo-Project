@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 70%;
-  margin: 30px;
+  max-width: 100%;
+  margin: 100px;
 }
 
 .about-section {

@@ -18,8 +18,8 @@ function AboutPage() {
             more deeply and creatively, and shared more readily with peers, when
             they had access to a modest collection of carefully chosen toys,
             rather than an abundance of toys that didn’t really suit them. I
-            also noticed how much the clutter and chaos of excess toys affected
-            mood - both children's and caregivers! However, I also recognized
+            also noticed how much the clutter and chaos created by excess toys could negatively impact
+            mood - both children's and grown-up's!  I also recognized
             that the most high-quality toys - durable, thoughtfully-designed,
             beautiful, and compelling - also tended to be expensive. Meanwhile
             the less well-made alternatives often ended up broken or neglected
