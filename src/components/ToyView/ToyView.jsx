@@ -113,7 +113,7 @@ function ToyView() {
             <div>
               <Popup
                 trigger={
-                  <button id="openPopup" onClick={open}>
+                  <button id="openPopup" onClick={open} className="base-button">
                     Ask to borrow?
                   </button>
                 }
@@ -132,7 +132,11 @@ function ToyView() {
                     <p>
                       <b>{toy.email}</b>
                     </p>
-                    <button id="closePopup" onClick={close}>
+                    <button
+                      id="closePopup"
+                      onClick={close}
+                      className="base-button"
+                    >
                       Got it!
                     </button>
                   </div>
