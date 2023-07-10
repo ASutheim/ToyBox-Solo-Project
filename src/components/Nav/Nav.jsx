@@ -10,12 +10,12 @@ function Nav() {
   return (
     <div className="nav">
       <div className="toybox">
-      <img src={require("./stock4.jpg")} height="140" id="header-image1"/>
+        <img src={require("./stock4.jpg")} height="140" id="header-image1" />
         <Link to="/home">
           <h2 className="nav-title"> —— ToyBox —— </h2>
         </Link>
-    
-        <img src={require("./stock1.jpg")} height="140" id="header-image2"/>
+
+        <img src={require("./stock1.jpg")} height="140" id="header-image2" />
       </div>
       <br></br>
       <div className="links_bar">
@@ -36,9 +36,6 @@ function Nav() {
 
             <Link className="navLink" to="/community_toy_list">
               Community Toy List
-            </Link>
-            <Link className="navLink" to="/info">
-              Info Page
             </Link>
 
             <LogOutButton className="navLink" />

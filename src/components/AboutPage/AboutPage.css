@@ -1,0 +1,33 @@
+#about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
+  margin: 30px;
+}
+
+.about-section {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-plus-image {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+h1 {
+  color: #00ada7;
+}
+
+.about-image {
+    float: right
+}
+
+.about-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
