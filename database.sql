@@ -71,7 +71,7 @@ VALUES (1, 'Outdoors'),
 --SAMPLE DATA FOR TESTING:
 
 INSERT INTO "user" ("id", "username", "password")
-VALUES (1, 'Anna', 'password'),
+VALUES (1, 'Me', 'password'),
 (2, 'Maryyy', 'password'),
 (3, 'Solhaus', 'password'),
 (4, 'JoNiels', 'password'),
@@ -81,11 +81,11 @@ VALUES (1, 'Anna', 'password'),
 
 INSERT INTO "user_email" ("id", "email")
 VALUES (1, 'anna@my_email.com'),
-(2, 'mary@mary_email.com'),
-(3, 'solveig@email.com'),
-(4, 'joniels@email.com'),
-(5, 'tenthouse@garden.org'),
-(6, 'onahike@outdoors.somewhere')
+(2, 'user@mary_email.com'),
+(3, 'user@email.com'),
+(4, 'user3@email.com'),
+(5, 'user@tenthousegarden.org'),
+(6, 'quinn@quinnhaus')
 
 
 INSERT INTO "toy_info" ("id", "owner_id", "name", "picture_url", "description", "status")
