@@ -8,6 +8,7 @@ import "reactjs-popup/dist/index.css";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import BlockIcon from "@mui/icons-material/Block";
 
 import "./ToyView.css";
 
@@ -43,25 +44,6 @@ function ToyView() {
     history.push("/user");
   };
 
-  const DeleteConfirmationModal = ({ onDelete, onCancel }) => {
-    return (
-      <div className="modal">
-        <div className="modal-content">
-          <h3>Confirm Deletion</h3>
-          <p>Are you sure you want to delete this toy?</p>
-          <div className="modal-buttons">
-            <button className="base-button" onClick={onDelete}>
-              Delete
-            </button>
-            <button className="base-button" onClick={onCancel}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   if (showEdit) {
     return <ToyEdit setShowEdit={setShowEdit} />;
   }
@@ -75,18 +57,35 @@ function ToyView() {
 
       <div id="right-side-wrapper">
         <div className="toy-details">
-          <p id="toy_name">Name: {toy?.name}</p>
-          <p id="status"> Status: {toy?.status}</p>
-          <p id="categories">
-            Categories:{" "}
+          <p className="detail-label" id="toy_name">
+            {" "}
+            <b>Name:</b> {toy?.name}
+          </p>
+
+          <p className="detail-label">
+            <b>Status: </b>
+            <span
+              style={{
+                color: toy?.status === "Available" ? "#006400" : "#FF8C00",
+              }}
+            >
+              {toy?.status}
+            </span>
+          </p>
+
+          <p className="detail-label" id="categories">
+            <b>Categories:</b>{" "}
             {toy?.toy_categories &&
               toy?.toy_categories.map((item) => item).join(", ")}{" "}
           </p>
-          <p id="ages">
-            Age Group/s:{" "}
+          <p className="detail-label" id="ages">
+            <b>Age Group/s:</b>{" "}
             {toy?.toy_ages && toy?.toy_ages.map((item) => item).join(", ")}{" "}
           </p>
-          <p id="description"> Description: {toy?.description}</p>
+          <p className="detail-label" id="description">
+            {" "}
+            <b>Description:</b> {toy?.description}
+          </p>
         </div>
 
         <div className="detail-controls">
@@ -124,10 +123,10 @@ function ToyView() {
                 {(close) => (
                   <div className="popup-content">
                     <p>
-                      This <b> {toy?.name}</b> belongs to: <b>{toy.owner}</b>.
+                      <b>{toy?.name}</b>
                     </p>
                     <p>
-                      It is currently <b>{toy.status}!</b>
+                      is currently <b>{toy.status}!</b>
                     </p>
                     <p>Here's the email address to get in touch:</p>
                     <p>
@@ -144,10 +143,38 @@ function ToyView() {
         </div>
       </div>
       {showDeleteModal && (
-        <DeleteConfirmationModal
-          onDelete={() => handleDelete(id)}
-          onCancel={handleCancel}
-        />
+        <Popup
+          open={showDeleteModal}
+          onClose={handleCancel}
+          modal
+          closeOnDocumentClick={false}
+        >
+          <div className="delete-popup">
+            <div className="delete-popup-content">
+              <h3>Confirm Deletion</h3>
+              <p>Are you sure you want to delete this toy?</p>
+              <div className="detail-controls">
+                <Button
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                  className="base-button"
+                  onClick={() => handleDelete(id)}
+                >
+                  Delete
+                </Button>
+
+                <Button
+                  variant="contained"
+                  startIcon={<BlockIcon />}
+                  className="base-button"
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Popup>
       )}
     </div>
   );

@@ -73,3 +73,14 @@
 #closePopup {
   margin-top: 10px;
 }
+
+#right-side-wrapper {
+  max-width: 50%;
+}
+
+.delete-popup {
+  display: flex;
+  justify-content: center;
+
+}
+

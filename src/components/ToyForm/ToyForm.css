@@ -32,7 +32,7 @@ label {
 input[type="text"] {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 5px;
-  max-width: 93gt %;
+  max-width: 93%;
 }
 
 textarea {
@@ -43,4 +43,9 @@ textarea {
 
 .toy-form .base-button.submit {
   margin-top: 8px;
+}
+
+.detail-label{
+  padding: 5px;
+  
 }
