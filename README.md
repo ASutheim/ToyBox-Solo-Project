@@ -35,7 +35,9 @@ Material-ui
 It was built in a two-week sprint as a solo capstone project during Prime Digital Academy's full-stack developer program. 
 
 
+##Deploy
 
+A demo version of the app is deployed on Heroku: <a href="https://toybox-solo-project-a3eed8e964df.herokuapp.com/">ToyBox App Demo</a>
 
 
 
